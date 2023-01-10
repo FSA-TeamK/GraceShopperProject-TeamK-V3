@@ -13,7 +13,17 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-  }
+    
+  },
+  email : {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
+  },
+
 })
 
 module.exports = User

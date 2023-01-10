@@ -1,7 +1,7 @@
 const require sequelize = require('sequelize')
 const db = require('../db')
 
-
+// made product model for the product table in the database, added rating but not sure if will currently use. 
 const Product = db.define('product', {
     name: {
         type: Sequelize.STRING,
@@ -24,18 +24,24 @@ const Product = db.define('product', {
             notEmpty: true
         }
     },
-    quantity: {
+    rating : {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        defaultValue: 0,
         validate: {
-            notEmpty: true
+            min: 0,
+            max: 5
         }
+
     },
-    imageUrl: {
+     imageUrl: {
         type: Sequelize.STRING,
         defaultValue: ''
     }
 })
+
+
+
+
 
 
 module.exports = Product
