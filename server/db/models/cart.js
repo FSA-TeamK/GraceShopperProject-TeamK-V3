@@ -3,6 +3,12 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
+const Cart = db.define('cart', {
+    status: {
+        type: Sequelize.ENUM("CART", "PURCHASED"),
+        allowNull: false,
+        defaultValue: "CART"
+    }
+});
 
-
-model.exports = cart
+module.exports = Cart;
