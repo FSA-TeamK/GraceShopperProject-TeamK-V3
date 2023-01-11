@@ -1,5 +1,5 @@
 import React from "react";
-import homePic from './pictures/home2.jpeg' 
+import homePic from '../pictures/home2.jpeg'
 
 const MainContent = () => {
 // placeholder functions for buttons

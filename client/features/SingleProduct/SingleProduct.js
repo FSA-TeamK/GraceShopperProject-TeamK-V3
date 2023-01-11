@@ -1,7 +1,7 @@
 import React from "react";
 import {useSelector} from 'react-redux'
-import AllProducts from "./AllProducts";
-import athletic1 from "./pictures/ath1.jpeg"
+import AllProducts from '../AllProducts/AllProducts.js'
+import athletic1 from "../pictures/ath1.jpeg"
 
 
 // single product page sample 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import AllProducts from '../AllProducts'
-import MainContent from '../MainContent'
-import SingleProduct from '../SingleProduct';
+import AllProducts from '../AllProducts/AllProducts.js'
+import MainContent from '../MainContent/MainContent'
+import SingleProduct from '../SingleProduct/SingleProduct';
 
 /**
  * COMPONENT
@@ -16,6 +16,7 @@ const Home = (props) => {
       <AllProducts />
     </div>
   );
+  
 };
 
 export default Home;

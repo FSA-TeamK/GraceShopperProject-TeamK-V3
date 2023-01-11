@@ -43,7 +43,7 @@ async function seed() {
       rating: 4,
       imageUrl:
         'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/19c2a9d2-ec59-43ad-972e-e3f32c7ba9b9/air-max-95-premium-mens-shoes-CCr9WV.png',
-        categorie: "ATHLETIC"
+        categories: "ATHLETIC"
     }),
     Product.create({
       name: 'Chuck Taylor All Star Classic',

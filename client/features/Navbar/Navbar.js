@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../../app/store/store';
-import mainlogo from '../../../src/components/pictures/mainlogo.png'
-import cart from '../../../src/components/pictures/cart.png'
+import { logout } from '../../app/store.js';
+import mainlogo from '../pictures/mainlogo.png'
+import cart from '../pictures/cart.png'
 
 
 const Navbar = () => {

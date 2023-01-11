@@ -1,5 +1,5 @@
 import React from "react";
-import Checkout from "./checkout";
+import Checkout from '../Checkout/Checkout';
 import { Link } from "react-router-dom";
 
 
