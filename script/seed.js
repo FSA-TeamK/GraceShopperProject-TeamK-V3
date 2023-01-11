@@ -1,5 +1,4 @@
 // 'use strict';
-const { faker } = require('@faker-js/faker');
 const {
   db,
   models: { User, Product },
@@ -21,35 +20,48 @@ async function seed() {
       description:
         'The Nike Air Force 1 is a classic basketball shoe that has been around since 1982. It was the first basketball shoe to feature Nike Air technology, which provides lightweight cushioning. The shoe is also known for its iconic Swoosh logo, which was designed by Carolyn Davidson.',
       price: 100,
-      quantity: 10,
+      rating: 4,
       imageUrl:
-        'https://images.unsplash.com/photo-1589989362029-8b5b5b5b5b1c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmllayUyMGFpciUyMGZvcmNlJTIwMXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+        'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/b7d9211c-26e7-431a-ac24-b0540fb3c00f/air-force-1-07-mens-shoes-5QFp5Z.png',
+        categorie: "CASUAL"
     }),
     Product.create({
       name: 'Nike Air Max 90',
       description:
         'The Nike Air Max 90 is a classic running shoe that was released in 1990. It features a visible Air unit in the heel, which provides lightweight cushioning. The shoe is also known for its iconic Swoosh logo, which was designed by Carolyn Davidson.',
       price: 120,
-      quantity: 10,
+      rating: 3,
       imageUrl:
-        'https://images.unsplash.com/photo-1589989362029-8b5b5b5b5b1c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmllayUyMGFpciUyMGZvcmNlJTIwMXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+        'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7fbc5e94-8d49-4730-a280-f19d3cfad0b0/custom-nike-air-max-90-by-you.png',
+        categorie: "ATHLETIC"
     }),
     Product.create({
       name: 'Nike Air Max 95',
       description:
         'The Nike Air Max 95 is a classic running shoe that was released in 1995. It features a visible Air unit in the heel, which provides lightweight cushioning. The shoe is also known for its iconic Swoosh logo, which was designed by Carolyn Davidson.',
       price: 130,
-      quantity: 10,
+      rating: 4,
       imageUrl:
-        'https://images.unsplash.com/photo-1589989362029-8b5b5b5b5b1c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmllayUyMGFpciUyMGZvcmNlJTIwMXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+        'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/19c2a9d2-ec59-43ad-972e-e3f32c7ba9b9/air-max-95-premium-mens-shoes-CCr9WV.png',
+        categorie: "ATHLETIC"
     }),
+    Product.create({
+      name: 'Chuck Taylor All Star Classic',
+      description:
+      'We could tell you that it’s the OG basketball shoe, created over 100 years ago. Or that the design has largely stayed the same, because why mess with a good thing. Or how it became the unofficial sneaker of all your favorite artists and musicians, who each made it their own. Yeah, we could share a lot of stories, but the one that matters most isn’t ours—it’s yours. It’s how and where you take your Chucks. The legacy is long, but what comes next is up to you. We just make the shoe. You make the stories.',
+      price: 65,
+      rating: 4,
+      imageUrl: 
+      'https://www.converse.com/dw/image/v2/BCZC_PRD/on/demandware.static/-/Sites-cnv-master-catalog/default/dw98db472f/images/a_08/560845C_A_08X1.jpg?sw=406',
+      categorie: "CASUAL"
+    })
     
   ]);
 
   //* Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
+    User.create({ username: 'cody', password: '123', email: 'cody123@gmail.com' }),
+    User.create({ username: 'murphy', password: '123', email: 'murphy456@gmail.com' }),
   ]);
 
   console.log(`seeded ${users.length} users`);

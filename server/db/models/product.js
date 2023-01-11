@@ -36,12 +36,19 @@ const Product = db.define('product', {
      imageUrl: {
         type: Sequelize.STRING,
         defaultValue: ''
+    },
+    categorie: {
+        type:Sequelize.ENUM("ATHLETIC", "CASUAL"),
+        allowNull: false,
+    },
+    size: {
+        type: Sequelize.INTEGER,
+        validate: {
+            min: 4,
+            max: 12
+        }
     }
 })
-
-
-
-
 
 
 module.exports = Product
