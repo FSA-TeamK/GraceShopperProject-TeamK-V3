@@ -31,7 +31,6 @@ const Product = db.define('product', {
             min: 0,
             max: 5
         }
-
     },
      imageUrl: {
         type: Sequelize.STRING,
