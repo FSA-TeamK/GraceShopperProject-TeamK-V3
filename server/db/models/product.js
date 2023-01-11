@@ -36,12 +36,12 @@ const Product = db.define('product', {
      imageUrl: {
         type: Sequelize.STRING,
         defaultValue: ''
+    },
+    categorie: {
+        type:Sequelize.ENUM("ATHLETIC", "CASUAL"),
+        allowNull: false,
     }
 })
-
-
-
-
 
 
 module.exports = Product
