@@ -3,13 +3,17 @@ const { models: { User, Product, Cart, CartItems }} = require('../db')
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'username', 'email', 'password']
-    })
-    res.json(users)
+    if(req.user.isAdmin){
+      const users = await User.findAll({
+        // explicitly select only the id and username fields - even though
+        // users' passwords are encrypted, it won't help if we just
+        // send everything to anyone who asks!
+        attributes: ['id', 'username', 'email', 'password']
+      })
+      res.json(users)
+    } else {
+      res.status(403).send('Access Denied')
+    }
   } catch (err) {
     next(err)
   }
