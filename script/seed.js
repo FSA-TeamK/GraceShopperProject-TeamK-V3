@@ -23,7 +23,7 @@ async function seed() {
       rating: 4,
       imageUrl:
         'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/b7d9211c-26e7-431a-ac24-b0540fb3c00f/air-force-1-07-mens-shoes-5QFp5Z.png',
-        categorie: "CASUAL"
+        categories: "CASUAL"
     }),
     Product.create({
       name: 'Nike Air Max 90',
@@ -33,7 +33,7 @@ async function seed() {
       rating: 3,
       imageUrl:
         'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7fbc5e94-8d49-4730-a280-f19d3cfad0b0/custom-nike-air-max-90-by-you.png',
-        categorie: "ATHLETIC"
+        categories: "ATHLETIC"
     }),
     Product.create({
       name: 'Nike Air Max 95',
@@ -53,7 +53,7 @@ async function seed() {
       rating: 4,
       imageUrl: 
       'https://www.converse.com/dw/image/v2/BCZC_PRD/on/demandware.static/-/Sites-cnv-master-catalog/default/dw98db472f/images/a_08/560845C_A_08X1.jpg?sw=406',
-      categorie: "CASUAL"
+      categories: "CASUAL"
     })
     
   ]);

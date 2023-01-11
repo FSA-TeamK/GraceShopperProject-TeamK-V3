@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import AuthForm from '../features/auth/AuthForm';
-import Home from '../features/home/Home';
-import { me } from './store';
-import Cart from '../../src/components/Cart'
-import SingleProduct from '../../src/components/SingleProduct';
-import Checkout from '../../src/components/checkout';
+import AuthForm from '../Auth/AuthForm'
+import Home from '../Home/Home'
+import { me } from '../../store/store';
+import Cart from '../Cart'
+import SingleProduct from '../SingleProduct';
+import Checkout from '../Checkout';
 
 /**
  * COMPONENT

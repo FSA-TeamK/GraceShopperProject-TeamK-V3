@@ -37,7 +37,7 @@ const Product = db.define('product', {
         type: Sequelize.STRING,
         defaultValue: ''
     },
-    categorie: {
+    categories: {
         type:Sequelize.ENUM("ATHLETIC", "CASUAL"),
         allowNull: false,
     },

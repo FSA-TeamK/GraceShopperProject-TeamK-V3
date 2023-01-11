@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import AllProducts from '../../../src/components/AllProducts'
-import MainContent from '../../../src/components/MainContent'
-import SingleProduct from '../../../src/components/SingleProduct';
+import AllProducts from '../AllProducts'
+import MainContent from '../MainContent'
+import SingleProduct from '../SingleProduct';
 
 /**
  * COMPONENT
