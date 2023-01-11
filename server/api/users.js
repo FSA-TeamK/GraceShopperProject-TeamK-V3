@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { User, Product,Cart }} = require('../db')
+const { models: { User, Product, Cart, CartItems }} = require('../db')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -60,10 +60,10 @@ router.put('/cart/:userId', async (req, res, next) => {
     if (!currentOrder) {
       const currentOrder = await Cart.create({
         userId: req.params.userId,
-        status: 'cart'
+        status: 'CART'
       })
 
-      await ProductOrder.create({
+      await CartItems.create({
         orderId: currentOrder.id,
         productId: req.body.id,
         quantity: 1,
@@ -72,9 +72,8 @@ router.put('/cart/:userId', async (req, res, next) => {
     }
 
     // if the cart does exist, add the product to the cart
-
     if (currentOrder) {
-      await ProductOrder.create({
+      await CartItems.create({
         orderId: currentOrder.id,
         productId: req.body.id,
         quantity: 1,
@@ -83,7 +82,7 @@ router.put('/cart/:userId', async (req, res, next) => {
     }
 
     // retrieve the newly added item
-    const newItem = await ProductOrder.findOne({
+    const newItem = await CartItems.findOne({
       where: {
         productId: product.id,
         orderId: currentOrder.id
@@ -94,6 +93,40 @@ router.put('/cart/:userId', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
-})
+});
+
+//delete item from cart
+router.delete('/cart/:userId/:productId', async (req, res, next) => {
+    try {
+      const removeProduct = await Product.findByPk(req.params.productId)
+      const currentOrder = await Cart.findOne({
+        where: 
+        {
+          userId: req.params.userId,
+          status: 'CART'
+        }
+      })
+      await currentOrder.destroy(removeProduct)
+      res.sendStatus(204)
+    } catch (error) {
+      next(error)
+    }
+});
+
+// route to checkout cart
+router.put('/checkout/:userId/', async (req, res, next) => {
+  try {
+    const order = await Cart.findOne({
+      where: {
+        userId: req.params.userId,
+        status: 'CART'
+      }
+    })
+    order.status = 'PURCHASED'
+    await order.save()
+  } catch (error) {
+    next(error)
+  }
+});
 
 module.exports = router
