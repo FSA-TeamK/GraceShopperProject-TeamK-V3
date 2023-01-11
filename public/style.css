@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: gray;
 }
 
 a {
@@ -12,10 +13,225 @@ label {
 
 nav a {
   display: inline-block;
-  margin: 1em;
+  margin: 7px;
 }
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+#routesDiv{
+  padding: 20px;
+}
+
+/* NAV BAR STYLE */
+
+#navDiv{
+  background-color: black;
+}
+
+#navBar{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+}
+
+#mainlogo{
+  width: 50px;
+  height: auto;
+}
+
+.navLinks{
+  color: white;
+}
+
+.sneakBtns{
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 16px;
+}
+
+.navbarLi{
+  align-self: baseline;
+}
+
+#cart{
+  width: 30px;
+  height: auto;
+}
+
+/* HOME CONTENT STYLE */
+
+#mainContent{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+#homePic{
+  width: 1000px;
+  height: 600px;
+  margin: auto;
+}
+
+.homePics{
+  width: 200px;
+  padding: 10px;
+}
+
+.sneakTitle{
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+.filterBtns{
+  background-color: black;
+  border: solid white;
+  color: white;
+  font-size: 40px;
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+}
+
+#allProductsUl{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* FOOTER STYLE */
+
+#footerNav{
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
+
+#footerUl{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.footerLi{
+  display: flex;
+  flex-direction: column;
+}
+
+#socials{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.socialLi{
+  padding: 3px;
+}
+
+/* SINGLE PRODUCT STYLE */
+
+#singProdDiv{
+  border: solid 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 75%;
+  margin: auto;
+}
+
+#sneakTitle{
+  font-weight: bold;
+  font-size: 50px;
+}
+
+#price{
+  font-weight: bold;
+  font-size: 30px;
+}
+
+#sizeText{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#singProdUl{
+  list-style: none;
+}
+
+#singProdImg{
+  width: 500px;
+  height: auto;
+}
+
+.sizeBtns{
+  width: 50px;
+  height: auto;
+  margin: 5px;
+}
+
+#cartBtn{
+  background-color: black;
+  margin: 10px 75px;
+  width: 300px;
+  font-size: 20px;
+  color: white;
+}
+
+.prodDetail{
+  font-weight: bold;
+  padding: 10px;
+}
+
+/* CART STYLE */
+
+#cartDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  border: solid 5px;
+  width: 75%;
+  height: 500px;
+  margin: auto;
+  padding: 20px;
+}
+
+#cartText{
+font-size: 50px;
+font-weight: bold;
+}
+
+#checkout{
+  border: solid black;
+  background-color: black;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 30px;
+  padding: 10px;
+}
+
+/* CHECKOUT STYLE */
+
+#checkoutDiv{
+  border: solid 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 80px;
+  padding: 30px;
+  height: 500px;
 }
