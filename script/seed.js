@@ -14,10 +14,7 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log('db synced!');
 
-<<<<<<< HEAD
   //* Creating Products
- 
-
   const products = await Promise.all([
     Product.create({
       name: 'Nike Air Force 1',
@@ -50,12 +47,6 @@ async function seed() {
   ]);
 
   //* Creating Users
-=======
-
-  
-
-  // Creating Users
->>>>>>> b45f9eb2807eb8e11878c3ceefbd70ee6ba5b6d8
   const users = await Promise.all([
     User.create({ username: 'cody', password: '123' }),
     User.create({ username: 'murphy', password: '123' }),
