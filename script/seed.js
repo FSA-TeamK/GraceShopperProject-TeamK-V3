@@ -40,7 +40,7 @@ async function seed() {
       description:
         'The Nike Air Max 95 is a classic running shoe that was released in 1995. It features a visible Air unit in the heel, which provides lightweight cushioning. The shoe is also known for its iconic Swoosh logo, which was designed by Carolyn Davidson.',
       price: 130,
-      rating: 2,
+      rating: 4,
       imageUrl:
         'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/19c2a9d2-ec59-43ad-972e-e3f32c7ba9b9/air-max-95-premium-mens-shoes-CCr9WV.png',
         categorie: "ATHLETIC"
