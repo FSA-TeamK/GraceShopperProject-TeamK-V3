@@ -5,6 +5,8 @@ router.get('/', async (req, res, next) => {
   try {
       const users = await User.findAll({
         // explicitly select only the id and username fields - even though
+        // only admins should be able to see any users information.   
+                                                                                
         // users' passwords are encrypted, it won't help if we just
         // send everything to anyone who asks!
         attributes: ['id', 'username', 'email', 'password', 'isAdmin']
@@ -13,7 +15,8 @@ router.get('/', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
-});
+})
+  
 
 router.get('/:id', async (req, res, next) => {
   try{

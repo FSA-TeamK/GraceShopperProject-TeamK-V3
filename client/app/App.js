@@ -4,12 +4,15 @@ import Navbar from '../features/Navbar/Navbar.js'
 import Footer from '../features/Footer/Footer.js';
 
 
-const App = () => {
+const App = () => { 
   return (
     <div>
       <Navbar />
+
       <AppRoutes />
+
       <Footer />
+      
     </div>
   );
 };

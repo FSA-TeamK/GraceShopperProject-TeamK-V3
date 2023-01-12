@@ -7,6 +7,7 @@ import { me } from './store.js';
 import Cart from '../features/Cart/Cart.js'
 import SingleProduct from '../features/SingleProduct/SingleProduct.js';
 import Checkout from '../features/Checkout/Checkout.js'
+import { fetchProductsAsync } from '../slices/products/productSlice';
 
 /**
  * COMPONENT
@@ -20,8 +21,9 @@ const AppRoutes = () => {
   const isLoggedIn = true;
 
   useEffect(() => {
+    dispatch(fetchProductsAsync());
     dispatch(me());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div id='routesDiv'>
