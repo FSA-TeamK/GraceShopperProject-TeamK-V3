@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store.js';
 import mainlogo from '../pictures/mainlogo.png'
 import cart from '../pictures/cart.png'
+import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 
 
 const Navbar = () => {
@@ -46,7 +47,7 @@ const Navbar = () => {
       <input onClick={SearchSneaks} type='submit'/>
       <Link className='navLinks' to="/login">Login</Link>
       <Link className='navLinks' to="/signup">Sign Up</Link>
-      <Link to='/cart'><img id='cart' src={cart}></img></Link>
+      <Link to='/cart'><ShoppingBasket/></Link>
       </li>
       </ul>
       </nav>
@@ -54,7 +55,6 @@ const Navbar = () => {
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
-           
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>

@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import AuthForm from '../features/Auth/AuthForm'
-import Home from '../features/Home/Home'
 import { me } from './store.js';
-import Cart from '../features/Cart/Cart.js'
-import SingleProduct from '../features/SingleProduct/SingleProduct.js';
-import Checkout from '../features/Checkout/Checkout.js'
+import { AllProducts, SingleProduct, Home, Checkout, Cart, AuthForm} from '../features/index.js'
 import { fetchProductsAsync } from '../slices/products/productSlice';
 
 /**
