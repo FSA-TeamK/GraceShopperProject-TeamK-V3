@@ -3,6 +3,8 @@ import Checkout from '../Checkout/Checkout';
 import { Link } from "react-router-dom";
 
 
+
+
 const Cart = () => {
     return(
         <div id="cartDiv">
@@ -11,5 +13,9 @@ const Cart = () => {
         </div>
     )
 } 
+
+
+
+
 
 export default Cart
