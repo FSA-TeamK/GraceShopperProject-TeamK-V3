@@ -2,12 +2,20 @@ import React from "react";
 import {useSelector} from 'react-redux'
 import AllProducts from '../AllProducts/AllProducts.js'
 import athletic1 from "../pictures/ath1.jpeg"
+import './singleProduct.css'
+import { useState } from "react";
 
-
-// single product page sample 
-// trying to figure out some code to avoid hard coding each product
 
 const SingleProduct = () => {
+
+     const [size, setSize] = useState(null)
+     const sizeArr = []
+     let n = 5 
+     while(n < 12){
+        sizeArr.push(n)
+        n = n + 0.5
+     }
+
 // product info sample
    const Product = {
         name: 'Athletic Runner',
@@ -36,25 +44,12 @@ const SingleProduct = () => {
                     <p id="sizeText">Sizes</p>
                     </li>
                     <li id="sizBtnLi">
-                    <button className="sizeBtns" type="button">5</button>
-                    <button className="sizeBtns" type="button">5.5</button>
-                    <button className="sizeBtns" type="button">6</button>
-                    <button className="sizeBtns" type="button">6.5</button>
-                    <button className="sizeBtns" type="button">7</button>
-                    <button className="sizeBtns" type="button">7.5</button>
-                    <button className="sizeBtns" type="button">8</button>
-                    <button className="sizeBtns" type="button">8.5</button>
-                    <button className="sizeBtns" type="button">9</button>
-                    <button className="sizeBtns" type="button">9.5</button>
-                    <button className="sizeBtns" type="button">10</button>
-                    <button className="sizeBtns" type="button">10.5</button>
-                    <button className="sizeBtns" type="button">10.5</button>
-                    <button className="sizeBtns" type="button">11</button>
-                    <button className="sizeBtns" type="button">11.5</button>
-                    <button className="sizeBtns" type="button">12</button>
+                        {sizeArr.map(currSize => {
+                            return <button onClick={ () => setSize(currSize)}  className={(currSize == size) ? 'sizeBtns selected' : 'sizeBtns'} type="button">{currSize}</button>
+                        })}
                     </li>
                     <li>
-                        <button id="cartBtn" onClick={AddToCart}>Add to cart</button>
+                        <button  id="cartBtn" onClick={AddToCart}>Add to cart</button>
                     </li>
                 <li>
                     <p className="prodDetail">Details</p>

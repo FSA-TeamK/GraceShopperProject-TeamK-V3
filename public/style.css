@@ -139,60 +139,6 @@ form div {
   padding: 3px;
 }
 
-/* SINGLE PRODUCT STYLE */
-
-#singProdDiv{
-  border: solid 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 75%;
-  margin: auto;
-}
-
-#sneakTitle{
-  font-weight: bold;
-  font-size: 50px;
-}
-
-#price{
-  font-weight: bold;
-  font-size: 30px;
-}
-
-#sizeText{
-  font-weight: bold;
-  font-size: 20px;
-}
-
-#singProdUl{
-  list-style: none;
-}
-
-#singProdImg{
-  width: 500px;
-  height: auto;
-}
-
-.sizeBtns{
-  width: 50px;
-  height: auto;
-  margin: 5px;
-}
-
-#cartBtn{
-  background-color: black;
-  margin: 10px 75px;
-  width: 300px;
-  font-size: 20px;
-  color: white;
-}
-
-.prodDetail{
-  font-weight: bold;
-  padding: 10px;
-}
-
 /* CART STYLE */
 
 #cartDiv{
