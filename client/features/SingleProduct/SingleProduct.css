@@ -1,0 +1,15 @@
+/* .single_product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+    padding: 0 20px;
+} */
+/* .single_product > img {
+    max-height: 200px;
+    object-fit: contain;
+} */
+

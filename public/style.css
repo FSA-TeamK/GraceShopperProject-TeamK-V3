@@ -235,3 +235,9 @@ font-weight: bold;
   padding: 30px;
   height: 500px;
 }
+
+/* JUST FOR NOW WILL PUT IT IN ITS OWN CSS FILE */
+#single_image {
+  max-height: 200px;
+  object-fit: contain;
+}
