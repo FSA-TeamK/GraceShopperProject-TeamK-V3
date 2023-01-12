@@ -1,4 +1,3 @@
-import React from "react";
 import athletic1 from "../pictures/ath1.jpeg"
 import casual1 from "../pictures/cas1.jpeg"
 import athletic2 from "../pictures/ath2.jpeg"
@@ -11,10 +10,19 @@ import athletic5 from "../pictures/ath5.jpeg"
 import casual5 from "../pictures/cas5.jpeg"
 import athletic6  from "../pictures/ath6.jpeg"
 import casual6 from "../pictures/cas6.jpeg"
+
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectAllProducts } from "../../slices/products/productSlice";
+
 
 
 const AllProducts = () => {
+    const products = useSelector(selectAllProducts)
+    // console.log('this is products --->', products)
+
+
     return(
         <div>
             <ul id="allProductsUl">
@@ -44,6 +52,20 @@ const AllProducts = () => {
                 <p className="sneakTitle" >Athletic Runner</p></li>
                 <li> <img className="homePics" src={casual6}/>
                 <p className="sneakTitle" >Casual Dweller</p></li>
+            </ul>
+            <ul>
+            {
+                products.map((product) => {
+                    return (
+                        <div key={product.id}>
+                            <Link to={`${product.id}`}>
+                                <img src={product.imageUrl} />
+                            </Link>
+                            <p>{product.description}</p>
+                            <p>{product.price}</p>
+                        </div>
+                    )
+                    })}
             </ul>
         </div>
     )
