@@ -16,7 +16,7 @@ const SingleProduct = () => {
   const product = useSelector(selectSingleProduct);
   const { name, description, price, quantity, imageUrl } = product;
 
-    console.log("single",singleProduct);
+    // console.log("single",singleProduct);
 
     useEffect(() => {
         dispatch(fetchSingleProductAsync(id));

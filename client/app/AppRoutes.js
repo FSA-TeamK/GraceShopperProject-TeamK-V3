@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { me } from './store.js';
-import { AllProducts, SingleProduct, Home, Checkout, Cart, AuthForm} from '../features/index.js'
+import { AllProducts, SingleProduct, Home, Checkout, Cart, AuthForm, SignUp} from '../features/index.js'
 import { fetchProductsAsync } from '../slices/products/productSlice';
 
 /**

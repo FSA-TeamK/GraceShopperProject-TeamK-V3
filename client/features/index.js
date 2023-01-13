@@ -7,5 +7,6 @@ export {default as Checkout} from './Checkout/Checkout.js';
 export {default as Navbar} from './Navbar/Navbar.js';
 export {default as Footer} from './Footer/Footer.js';
 export {default as AuthForm} from './Auth/AuthForm.js';
+export {default as SignUp} from './SignUp/SignUp.js';
 
 
