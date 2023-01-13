@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store.js';
 import mainlogo from '../pictures/mainlogo.png'
 import cart from '../pictures/cart.png'
+import './navbar.css'
 
 
 const Navbar = () => {

@@ -1,6 +1,9 @@
 import React from "react";
 import Checkout from '../Checkout/Checkout';
 import { Link } from "react-router-dom";
+import './cart.css'
+
+
 
 
 const Cart = () => {
@@ -11,5 +14,9 @@ const Cart = () => {
         </div>
     )
 } 
+
+
+
+
 
 export default Cart

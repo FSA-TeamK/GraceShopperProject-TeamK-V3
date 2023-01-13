@@ -1,0 +1,13 @@
+/* CHECKOUT STYLE */
+
+#checkoutDiv{
+    border: solid 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 80px;
+    padding: 30px;
+    height: 500px;
+  }
