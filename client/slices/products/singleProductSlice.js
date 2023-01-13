@@ -8,7 +8,7 @@ export const fetchSingleProductAsync = createAsyncThunk(
     async (id) => { 
         try {
             let { data } = await axios.get(`http://localhost:8080/api/products/${id}`);
-            console.log("this is single data --->", data)
+            // console.log("this is single data --->", data)
             return data;
         } catch (err) {
             console.log(err);
@@ -23,14 +23,14 @@ const singleProductSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchSingleProductAsync.fulfilled, (state, action) => {
-            console.log("this is single action.payload --->", action.payload)
+            // console.log("this is single action.payload --->", action.payload)
             return action.payload;
         });
     }
 })
 
 export const selectSingleProduct = (state) => {
-    console.log("this is state.singleProduct --->", state.singleProduct)
+    // console.log("this is state.singleProduct --->", state.singleProduct)
     return state.singleProduct;
 }
 

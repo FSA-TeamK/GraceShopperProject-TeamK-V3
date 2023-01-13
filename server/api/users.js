@@ -27,7 +27,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // user cart
-router.get('/cart/:userId', async (req, res, next) => {
+router.get('/cart/:id', async (req, res, next) => {
   try {
     const cartItems = await Product.findAll({
       include: {
@@ -45,7 +45,7 @@ router.get('/cart/:userId', async (req, res, next) => {
 });
 
 // adding product to cart
-router.put('/cart/:userId', async (req, res, next) => {
+router.put('/cart/:id', async (req, res, next) => {
   try {
     // find the product in the db
     const product = await Product.findByPk(req.body.id)

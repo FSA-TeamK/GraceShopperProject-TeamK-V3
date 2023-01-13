@@ -12,11 +12,13 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const singleProduct = useSelector(selectSingleProduct);
-  const { name, description, price, quantity, imageUrl } = singleProduct;
+  const product = useSelector(selectSingleProduct);
+  const { name, description, price, quantity, imageUrl } = product;
 
-  // console.log('single', singleProduct);
-
+  // const handleAddToCart = (product) => {
+  //   dispatch(addToCart(product));
+  // }
+  
   useEffect(() => {
     dispatch(fetchSingleProductAsync(id));
   }, [dispatch]);
@@ -33,7 +35,7 @@ const SingleProduct = () => {
       </p>
       <p>{quantity}</p>
       <img id='single_image' src={imageUrl} alt="BLANK" />
-      <button onClick={() => dispatch(addToCart(singleProduct))}>Add to Basket</button>
+      <button onClick={() => dispatch(addToCart(product))}>Add to Basket</button>
     </div>
   );
 };
