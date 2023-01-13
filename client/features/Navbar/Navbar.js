@@ -29,6 +29,9 @@ const Navbar = () => {
     console.log('filter casual sneakers');
   };
 
+  const ExploreBtn = () => {
+    console.log('filter all sneakers')
+  }
   const SearchSneaks = () => {
     console.log('sneakers searched');
   };
@@ -43,6 +46,7 @@ const Navbar = () => {
             <Link className="navLinks" to="/home">
               Home
             </Link>
+          <Link className='sneakBtns' to="/products" >Explore</Link>
             <button className="sneakBtns" type="button" onClick={AthleticBtn}>
               Athletic
             </button>

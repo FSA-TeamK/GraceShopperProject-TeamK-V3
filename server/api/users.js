@@ -26,6 +26,15 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.post("/", async (req, res, next) => {
+  try{
+    const newUser = await User.create(req.body);
+    res.status(201).send(newUser);
+  } catch(err){
+    next(err);
+  }
+});
+
 //* users/carts routes
 router.get('/carts', async (req, res, next) => {
   try {

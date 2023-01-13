@@ -16,14 +16,11 @@ const SingleProduct = () => {
   const product = useSelector(selectSingleProduct);
   const { name, description, price, quantity, imageUrl } = product;
 
-  // const handleAddToCart = (product) => {
-  //   // const { id, name, price } = product2;
-  //   dispatch(addCartItem(product));
-  // }
-  
-  useEffect(() => {
-    dispatch(fetchSingleProductAsync(id));
-  }, [dispatch]);
+    console.log("single",singleProduct);
+
+    useEffect(() => {
+        dispatch(fetchSingleProductAsync(id));
+    }, []);
 
   return (
     <div className="single_product">

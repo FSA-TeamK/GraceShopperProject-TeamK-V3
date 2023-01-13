@@ -12,7 +12,6 @@ const Home = (props) => {
   return (
     <div>
       <MainContent />
-      <AllProducts />
     </div>
   );
   
