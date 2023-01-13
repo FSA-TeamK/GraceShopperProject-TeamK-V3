@@ -10,11 +10,11 @@ import { fetchProductsAsync } from '../slices/products/productSlice';
  */
 
 const AppRoutes = () => {
-  // const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
 
   // ADDED FOR TESTING
-  const isLoggedIn = true;
+  // const isLoggedIn = false;
 
   useEffect(() => {
     dispatch(fetchProductsAsync());

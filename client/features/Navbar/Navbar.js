@@ -7,7 +7,7 @@ import mainlogo from '../pictures/mainlogo.png';
 import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 
 const Navbar = () => {
-  // const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -18,7 +18,7 @@ const Navbar = () => {
   const cart = useSelector((state) => state.cart);
   // console.log('cart', cart);
 
-  const isLoggedIn = false;
+  // const isLoggedIn = false;
 
   // placeholder functions for each button
   const AthleticBtn = () => {

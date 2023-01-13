@@ -3,9 +3,13 @@ import Checkout from '../Checkout/Checkout';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartProduct from './CartProduct';
+import { selectCart } from '../../slices/cart/cartslice';
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart);
+    const cart = useSelector(selectCart)
+//   const cart = useSelector((state) => state.cart);
+
+
   console.log('this is cart--->', cart);
 
   return (

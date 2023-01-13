@@ -26,14 +26,14 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-// user cart
-router.get('/cart/:id', async (req, res, next) => {
+//* users/carts routes
+router.get('/carts', async (req, res, next) => {
   try {
     const cartItems = await Product.findAll({
       include: {
         model: Cart,
         where: {
-          userId: req.params.userId,
+          // userId: req.params.userId,
           status: 'CART'
         }
       }
@@ -45,23 +45,23 @@ router.get('/cart/:id', async (req, res, next) => {
 });
 
 // adding product to cart
-router.put('/cart/:id', async (req, res, next) => {
+router.post('/carts', async (req, res, next) => {
   try {
     // find the product in the db
-    const product = await Product.findByPk(req.body.id)
+    const product = await Product.findByPk(req.param.id)
 
     // find the user cart order
-    const currentOrder = await Cart.findOne({
-      where: {
-        userId: req.params.userId,
-        status: 'CART'
-      }
-    })
+    // const currentOrder = await Cart.findOne({
+    //   where: {
+    //     // userId: req.params.userId,
+    //     status: 'CART'
+    //   }
+    // })
 
     // if the cart does not exist yet, create the cart
-    if (!currentOrder) {
+    // if (!currentOrder) {
       const currentOrder = await Cart.create({
-        userId: req.params.userId,
+        // userId: req.params.userId,
         status: 'CART'
       })
 
@@ -71,7 +71,7 @@ router.put('/cart/:id', async (req, res, next) => {
         quantity: 1,
         purchasePrice: product.price
       })
-    }
+    // }
 
     // if the cart does exist, add the product to the cart
     if (currentOrder) {

@@ -15,8 +15,10 @@ User.hasMany(Cart);
 Cart.belongsTo(User);
 
 Cart.belongsToMany(Product, {through: CartItems});
-
 Product.belongsToMany(Cart, {through: CartItems})
+
+Product.hasMany(CartItems);
+CartItems.belongsTo(Product);
 
 
 module.exports = {

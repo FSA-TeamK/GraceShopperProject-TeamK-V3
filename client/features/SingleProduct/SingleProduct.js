@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './SingleProduct.css';
 import { addToCart } from '../../slices/cart/cartslice';
+// import { addCartItem } from '../../slices/cart/cartslice';
 import {
   fetchSingleProductAsync,
   selectSingleProduct,
@@ -16,7 +17,8 @@ const SingleProduct = () => {
   const { name, description, price, quantity, imageUrl } = product;
 
   // const handleAddToCart = (product) => {
-  //   dispatch(addToCart(product));
+  //   // const { id, name, price } = product2;
+  //   dispatch(addCartItem(product));
   // }
   
   useEffect(() => {
@@ -36,6 +38,8 @@ const SingleProduct = () => {
       <p>{quantity}</p>
       <img id='single_image' src={imageUrl} alt="BLANK" />
       <button onClick={() => dispatch(addToCart(product))}>Add to Basket</button>
+      {/* <button onClick={handleAddToCart}>Add to Basket</button> */}
+
     </div>
   );
 };

@@ -8,6 +8,7 @@ import {AllProducts, MainContent, SingleProduct} from '../index'
 const Home = (props) => {
   const username = useSelector((state) => state.auth.me.username);
 
+  
   return (
     <div>
       <MainContent />
