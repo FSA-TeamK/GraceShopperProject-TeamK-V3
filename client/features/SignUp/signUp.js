@@ -17,16 +17,13 @@ const SignUp = () => {
         evt.preventDefault();
         const createUser = {username, email, password};
         dispatch(addUserAsync(createUser)).then(()=>{
-            navigate("/login");
+            navigate("/home");
         });
     };
 
     return(
         <>
         <h1>Sign Up</h1>
-        <Link to={'/login'}>
-        <button>Log In</button>
-        </Link>
 
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">UserName:</label>

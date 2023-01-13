@@ -7,7 +7,6 @@ import { me } from './store.js';
 import Cart from '../features/Cart/Cart.js'
 import SingleProduct from '../features/SingleProduct/SingleProduct.js';
 import Checkout from '../features/Checkout/Checkout.js'
-import LogIn from '../features/LogIn/login';
 import SignUp from '../features/SignUp/signUp';
 import AllProducts from '../features/AllProducts/AllProducts';
 import { fetchProductsAsync } from '../slices/products/productSlice';
@@ -38,7 +37,6 @@ const AppRoutes = () => {
           <Route path='/products/:id' element={<SingleProduct />} />
           <Route path='/*' element={<Home />} />
           <Route path='/home' element={<Home />} />
-          <Route path='/login' element={<LogIn />} />
           <Route path='/signup' element={<SignUp />} />
         </Routes>
       ) : (
