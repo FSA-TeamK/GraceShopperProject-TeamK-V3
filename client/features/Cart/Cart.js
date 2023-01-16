@@ -6,9 +6,8 @@ import CartProduct from './CartProduct';
 import { selectCart } from '../../slices/cart/cartslice';
 
 const Cart = () => {
-    const cart = useSelector(selectCart)
-//   const cart = useSelector((state) => state.cart);
-
+    // const cart = useSelector(selectCart)
+  const cart = useSelector((state) => state.cart); 
 
   console.log('this is cart--->', cart);
 
@@ -16,13 +15,21 @@ const Cart = () => {
     <div id="cartDiv">
       <p id="cartText">My Cart</p>
       {cart?.map((product) => (
-        <div key={product.id}>
-          <img src={product.imageUrl} alt="BLANK" />
-          <p>{product.name}</p>
-          <p>${product.price}</p>
-          <p>{product.description}</p>
-          {/* <p>Quantity: {product.quantity}</p> */}
-        </div>
+        <CartProduct
+        // <div key={product.id}>
+        //   <img src={product.imageUrl} alt="BLANK" />
+        //   <p>{product.name}</p>
+        //   <p>${product.price}</p>
+        //   <p>{product.description}</p>
+        //   {/* <p>Quantity: {product.quantity}</p> */}
+        // </div>
+        key={product.id}
+        id={product.id}
+        imageUrl={product.imageUrl}
+        name={product.name}
+        price={product.price}
+        quantity={product.quantity}
+          />
       ))}
       <Link id="checkout" to="/checkout">
         Proceed to checkout

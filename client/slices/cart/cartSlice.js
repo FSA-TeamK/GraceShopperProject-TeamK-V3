@@ -57,20 +57,20 @@ const cartSlice = createSlice({
             state.push(action.payload);
             // state.cart.push(action.payload);
     },
-//     incrementQuantity: (state, action) => {
-//         const product = state.cart.find((product) => product.id === action.payload);
-//         product.quantity++;
-//     },
-//     decrementQuantity: (state, action) => {
-//         const product = state.cart.find((product) => product.id === action.payload);
-//         if (product.quantity > 1) {
-//             product.quantity--;
-//         }
-//     },
-//     removeCart: (state, action) => {
-//         const removeCart = state.cart.filter((product) => product.id !== action.payload);
-//         state.cart = removeCart;
-// },
+    incrementQuantity: (state, action) => {
+        const product = state.find((product) => product.id === action.payload);
+        product.quantity++;
+    },
+    decrementQuantity: (state, action) => {
+        const product = state.find((product) => product.id === action.payload);
+        if (product.quantity > 1) {
+            product.quantity--;
+        }
+    },
+    removeCart: (state, action) => {
+        const removeCart = state.filter((product) => product.id !== action.payload);
+        return removeCart;
+},
     },
     // extraReducers: (builder) => { 
     //    builder.addCase(fetchCartAsync.fulfilled, (state, action) => {
