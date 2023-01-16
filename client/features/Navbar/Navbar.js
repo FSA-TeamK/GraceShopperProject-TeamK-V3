@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store.js';
 import mainlogo from '../pictures/mainlogo.png';
-// import cart from '../pictures/cart.png';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+import cart from '../pictures/cart.png';
+// import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -64,7 +64,7 @@ const Navbar = () => {
               Sign Up
             </Link>
             <Link to="/cart">
-              <ShoppingBasket />
+              {/* <ShoppingBasket /> */}
               <span className='nav_cartCount'>0</span>
             </Link>
           </li>
