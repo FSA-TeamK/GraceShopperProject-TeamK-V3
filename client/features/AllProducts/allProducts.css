@@ -14,7 +14,7 @@
   }
   
   .homePics{
-    width: 200px;
+    width: 300px;
     padding: 10px;
   }
   
@@ -23,6 +23,8 @@
     font-weight: bold;
     text-align: center;
     font-size: 20px;
+    padding: 10px;
+    letter-spacing: 5px;
   }
   
   .filterBtns{
@@ -40,4 +42,14 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  #categories{
+    padding: 10px;
+    color: darkgray;
+  }
+
+  #ratingStar{
+    width: 20px;
+    padding: 3px;
   }
