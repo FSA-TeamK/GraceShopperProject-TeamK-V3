@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartProduct from './CartProduct';
 import { selectCart } from '../../slices/cart/cartslice';
+import './Cart.css';
 
 const Cart = () => {
     // const cart = useSelector(selectCart)

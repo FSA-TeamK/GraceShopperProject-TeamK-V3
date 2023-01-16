@@ -241,3 +241,16 @@ font-weight: bold;
   max-height: 200px;
   object-fit: contain;
 }
+
+#cartDiv {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.cartProduct_image > img {
+    max-height: 200px;
+    object-fit: contain;
+}
