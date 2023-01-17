@@ -17,12 +17,12 @@ const CartItems = db.define('cartItems', {
             notEmpty: true
         }
     },
-    // quantity: {
-    //     type: Sequelize.INTEGER,
-    //     allowNull: false,
-    //     // validate: {
-    //     //     notEmpty:true
-    //     // }
+    quantity: {
+        type: Sequelize.INTEGER,
+        // allowNull: false,
+        // validate: {
+        //     notEmpty:true
+        }
     
 
 });

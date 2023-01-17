@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+
 // const initialState = {
 //     cart: [{ id: 1, name: 'Nike Air Force 1', price: 100, quantity: 1 }, { id: 2, name: 'Nike Air Max 90', price: 120, quantity: 1}],
 // }
@@ -54,23 +56,35 @@ const cartSlice = createSlice({
     reducers: {
         addToCart: (state, action) => {
             console.log('cart action', action.payload)
-            state.push(action.payload);
+            const product = state.find((product) => product.id === action.payload.id);
+            if (product) {
+                product.quantity++;
+            } else {
+                state.push({ ...action.payload, quantity: 1 });
+            // state.push(action.payload);
             // state.cart.push(action.payload);
+            }
     },
-//     incrementQuantity: (state, action) => {
-//         const product = state.cart.find((product) => product.id === action.payload);
-//         product.quantity++;
-//     },
-//     decrementQuantity: (state, action) => {
-//         const product = state.cart.find((product) => product.id === action.payload);
-//         if (product.quantity > 1) {
-//             product.quantity--;
-//         }
-//     },
-//     removeCart: (state, action) => {
-//         const removeCart = state.cart.filter((product) => product.id !== action.payload);
-//         state.cart = removeCart;
-// },
+    incrementQuantity: (state, action) => {
+        const product = state.find((product) => product.id === action.payload);
+        console.log("this is increment --->", state)
+        console.log('this is action.payload --->', action.payload)
+        product.quantity++;
+    },
+    decrementQuantity: (state, action) => {
+        console.log("this is decrement --->", state)
+        console.log('this is action.payload --->', action.payload)
+        const product = state.find((product) => product.id === action.payload);
+        if (product.quantity === 1) {
+            product.quantity = 1;
+        } else { 
+            product.quantity--;
+        }
+    },
+    removeCart: (state, action) => {
+        const removeCart = state.filter((product) => product.id !== action.payload);
+        return removeCart;
+},
     },
     // extraReducers: (builder) => { 
     //    builder.addCase(fetchCartAsync.fulfilled, (state, action) => {

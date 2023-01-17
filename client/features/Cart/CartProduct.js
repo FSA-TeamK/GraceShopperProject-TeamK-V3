@@ -1,29 +1,41 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeCart } from '../../slices/cart/cartslice';
+import {
+  decrementQuantity,
+  incrementQuantity,
+  removeCart,
+} from '../../slices/cart/cartslice';
 
-const CartProduct = ({id, imageUrl, name, price}) => {
-    const dispatch = useDispatch();
+const CartProduct = ({ id, imageUrl, name, price, size, quantity = 0 }) => {
+  const dispatch = useDispatch();
 
   return (
-    <div className='cartProduct'>
-        <div className='cartProduct_image'>
-            <img src={imageUrl} alt="BLANK" />
+    <div>
+      <ul id='cartUl'>
+      <div>
+        <img id='prodImg' src={imageUrl} alt="BLANK" />
+      </div>
+      <div className='cartLi'>
+        <p id='prodName'>{name}</p>
+        <p>
+          <small>$</small>
+          <strong>{price}</strong>
+        </p>
+        <div>
+        <p>Size: {size}</p>
         </div>
-        <div className='cartProduct_info'>
-            <p className='cartProduct_title'>{name}</p>
-            <p className='cartProduct_price'>
-                <small>$</small>
-                <strong>{price}</strong>
-            </p>
-            <div className='cartProduct_rating'>
-                <p>⭐</p>
-            </div>
-            <button onClick={() => dispatch(removeCart(id))}>Remove from Basket</button>
+        <div id='quantSect'>
+          <button className='quantBtns' onClick={() => dispatch(decrementQuantity(id))}>-</button>
+          <p id='quantityNum'>{quantity}</p>
+          <button className='quantBtns' onClick={() => dispatch(incrementQuantity(id))}>+</button>
         </div>
+        <button id='remove' onClick={() => dispatch(removeCart(id))}>
+          Remove from Basket
+        </button>
+      </div>
+      </ul>
     </div>
-    
-  )
-}
+  );
+};
 
-export default CartProduct
+export default CartProduct;
