@@ -10,6 +10,7 @@ import {
   Cart,
   AuthForm,
   SignUp,
+  UserCart
 } from '../features/index.js';
 import { fetchProductsAsync } from '../slices/products/productSlice';
 
@@ -34,7 +35,7 @@ const AppRoutes = () => {
       {isLoggedIn ? (
         <Routes>
           <Route path="/products" element={<AllProducts />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<UserCart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/products/:id" element={<SingleProduct />} />
           <Route path="/*" element={<Home />} />
