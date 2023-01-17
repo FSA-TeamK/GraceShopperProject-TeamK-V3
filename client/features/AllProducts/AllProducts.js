@@ -79,20 +79,19 @@ const AllProducts = () => {
 
     return(
         <div id='allproductsDiv'>
-            <MainContent />
             <Filter sortingFilter={sortingFilter} categoryFilter={categoryFilter} />
             <ul id="allProductsUl">
             {
                 filterProducts.map((product) => {
                     return (
-                        <div key={product.id} className="allProductsUl">
+                        <div key={product.id} className="allProductsDiv">
                             <Link to={`/products/${product.id}`}>
                                 <img className="homePics" src={product.imageUrl} />
                             </Link>
                             <h2 className="sneakTitle">{product.name} ${product.price}</h2>
                             <p id="categories">{product.categories}</p>
-                            {Array(product.rating).fill('').map((rating) => {
-                                return <img id="ratingStar" src={star}></img> 
+                            {Array(product.rating).fill('').map((rating, currStar) => {
+                                return <img key={currStar} id="ratingStar" src={star}></img> 
                             })}
                         </div>
                     )

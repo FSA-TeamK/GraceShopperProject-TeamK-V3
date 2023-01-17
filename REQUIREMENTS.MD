@@ -1,28 +1,37 @@
 # Front End
 
 #### Header
-- [] Logo
-- [] Search box
-- [] sign in
-- [] Cart
+- [X] Logo
+- [X] Search box
+- [X] sign in
+- [X] Cart
 
 #### Product
-- [] Title, Price, Description, Ratings, Add to basket
-- [] Add to basket renders
-- []
+- [X] Title, Price, Description, Ratings, Add to basket
+- [X] Add to basket renders
+- [] 
 
 #### Checkout Page
-- [] Render when add item to basket
+- [X] Render when add item to basket
 - [] Remove from basket
 - [] Subtotal
 
 #### Login
-- [] create login page/form
+- [X] create login page/form
+- [] when user login you can add 2 cart Islogin?
+- [] When log in singleproduct has detail button that can edit quantity/price
+- [] view user info???
 
 
 # Back End
 - [X] Create products routes
 - [] User routes ???
-- [] Cart routes
-- [] Home Routes
+- [] Cart routes ???
+- [X] Home Routes
 - []
+
+---
+
+## Tier 2
+
+

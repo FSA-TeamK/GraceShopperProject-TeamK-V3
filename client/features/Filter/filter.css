@@ -1,12 +1,12 @@
-#select{
-    width: 100px;
-}
-
-hr{
-    width: 150px;
-    
-}
-
 #filterDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+}
+
+#select {
     width: 150px;
 }

@@ -20,7 +20,6 @@ const Filter = ({sortingFilter, categoryFilter}) => {
                 <option value='3'>Z to A</option>
                 <option value='4'>Rating</option>
             </select> 
-            <hr/>
             <h3>Categories</h3>
             <input onChange={(e) => {
                 categoryFilter(e.target.name, e.target.checked)

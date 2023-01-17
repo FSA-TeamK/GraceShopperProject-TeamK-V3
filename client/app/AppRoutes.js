@@ -1,26 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import AuthForm from '../features/Auth/AuthForm'
-import Home from '../features/Home/Home'
 import { me } from './store.js';
-import Cart from '../features/Cart/Cart.js'
-import SingleProduct from '../features/SingleProduct/SingleProduct.js';
-import Checkout from '../features/Checkout/Checkout.js'
-import LogIn from '../features/LogIn/loging';
+import { AllProducts, SingleProduct, Home, Checkout, Cart, AuthForm, SignUp} from '../features/index.js'
 import { fetchProductsAsync } from '../slices/products/productSlice';
-import AllProducts from '../features/AllProducts/AllProducts';
 
 /**
  * COMPONENT
  */
 
 const AppRoutes = () => {
-  // const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
 
   // ADDED FOR TESTING
-  const isLoggedIn = true;
+  // const isLoggedIn = false;
 
   useEffect(() => {
     dispatch(fetchProductsAsync());
@@ -37,7 +31,7 @@ const AppRoutes = () => {
           <Route path='/products/:id' element={<SingleProduct />} />
           <Route path='/*' element={<Home />} />
           <Route path='/home' element={<Home />} />
-          <Route path='/login' element={<LogIn />} />
+          <Route path='/signup' element={<SignUp />} />
         </Routes>
       ) : (
         <Routes>

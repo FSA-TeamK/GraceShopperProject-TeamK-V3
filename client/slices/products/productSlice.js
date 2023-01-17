@@ -20,7 +20,7 @@ const allProductsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
-            console.log('this is action.payload --->', action.payload)
+            // console.log('this is action.payload --->', action.payload)
             return action.payload;
         });
     }

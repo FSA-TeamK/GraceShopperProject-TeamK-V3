@@ -1,19 +1,6 @@
 /* ALL PRODUCTS STYLE */
 
-#mainContent{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-  }
-  
-  #homePic{
-    width: 1000px;
-    height: 600px;
-    margin: auto;
-  }
-  
-  .homePics{
+.homePics{
     width: 300px;
     padding: 10px;
   }
@@ -21,20 +8,8 @@
   .sneakTitle{
     color: black;
     font-weight: bold;
-    text-align: center;
     font-size: 20px;
-    padding: 10px;
     letter-spacing: 5px;
-  }
-  
-  .filterBtns{
-    background-color: black;
-    border: solid white;
-    color: white;
-    font-size: 40px;
-    width: 300px;
-    height: 300px;
-    margin: 20px;
   }
   
   #allProductsUl{
@@ -42,14 +17,20 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    text-align: center;
+    
   }
 
   #categories{
-    padding: 10px;
     color: darkgray;
   }
 
   #ratingStar{
     width: 20px;
-    padding: 3px;
+  }
+
+  .allProductsDiv{
+    width: 400px;
+    height: auto;
+    padding: 20px;
   }

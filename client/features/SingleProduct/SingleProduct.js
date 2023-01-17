@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchSingleProductAsync, selectSingleProduct } from "../../slices/singleProductSlice";
 import './singleProduct.css'
-
+import { addToCart } from '../../slices/cart/cartslice';
+import {
+  fetchSingleProductAsync,
+  selectSingleProduct,
+  chooseSize
+} from '../../slices/products/singleProductSlice';
 
 const SingleProduct = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
-    const dispatch = useDispatch();
-    const {id} = useParams();
+  const product = useSelector(selectSingleProduct);
+//   const { name, description, price, quantity, imageUrl } = product;
 
-    const singleProduct = useSelector(selectSingleProduct);
-
-    console.log("single",singleProduct);
+    // console.log("single",singleProduct);
 
     useEffect(() => {
         dispatch(fetchSingleProductAsync(id));
     }, []);
 
     // For Size Buttons
-    const [size, setSize] = useState(null)
      const sizeArr = []
      let n = 5 
      while(n <= 12.5){
@@ -27,37 +30,31 @@ const SingleProduct = () => {
         n = n + 0.5
      }
 
-
-const AddToCart = () => {
-    console.log('added to cart')
-}
-
 return(
     <div id="singProdDiv">
-        <img id="singProdImg" src={singleProduct.imageUrl} />
+        <img id="singProdImg" src={product.imageUrl} />
         <ul id="singProdUl">
             <li>
-                <p id="sneakTitle">{singleProduct.name}</p>
+                <p id="sneakTitle">{product.name}</p>
                 </li>
                 <li>
-                <p id="price">${singleProduct.price}</p>
+                <p id="price">${product.price}</p>
                 </li>
                 <li>
                 <p id="sizeText">Sizes</p>
                 </li>
                 <li id="sizBtnLi">
                     {sizeArr.map(currSize => {
-                        return <button onClick={ () => setSize(currSize)}  className={(currSize == size) ? 'sizeBtns selected' : 'sizeBtns'} type="button">{currSize}</button>
+// Mapping over sizeArr(written above) to create button for each size 
+                        return <button key={currSize} onClick={ () => dispatch(chooseSize(currSize))}  className={(currSize == product.size) ? 'sizeBtns selected' : 'sizeBtns'} type="button">{currSize}</button>
                     })}
                 </li>
                 <li>
-                    <button  id="cartBtn" onClick={AddToCart}>Add to cart</button>
+                    <button  id="cartBtn" onClick={() => dispatch(addToCart(product))}>Add to cart</button>
                 </li>
             <li>
                 <p className="prodDetail">Details</p>
-                <li>
-                    <p className="prodDetail">{singleProduct.description}</p>
-                </li>
+                    <p className="prodDetail">{product.description}</p>
             </li>
         </ul>
     </div>
