@@ -22,9 +22,6 @@ const Cart = () => {
         quantity={product.quantity}
           />
       ))}
-      <div>
-        <p id='totalText'>Total: $ </p>
-      </div>
       <Link id="checkout" to="/checkout">
         Proceed to checkout
       </Link>
