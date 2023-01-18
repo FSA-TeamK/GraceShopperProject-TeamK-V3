@@ -65,7 +65,7 @@ const Navbar = () => {
             </Link>
             <Link to="/cart">
               <ShoppingBasket />
-              <span className='nav_cartCount'>0</span>
+              {/* <span className='nav_cartCount'>{cart.length}</span> */}
             </Link>
           </li>
         </ul>

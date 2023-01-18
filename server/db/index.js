@@ -11,7 +11,6 @@ const Cart = require('./models/cart');
 const CartItems = require('./models/cartItems');
 
 //associations could go here!
-// User.hasMany(Cart);
 // Cart.belongsTo(User);
 
 // Cart.belongsToMany(Product, { through: CartItems });
@@ -20,7 +19,9 @@ const CartItems = require('./models/cartItems');
 // Product.hasMany(CartItems);
 // CartItems.belongsTo(Product);
 
+// User.hasMany(Cart);
 Cart.hasOne(User);
+
 // User.hasOne(Cart);
 // Cart.belongsTo(User);
 Cart.hasMany(Product);
