@@ -81,11 +81,11 @@ export const removeItemAsync = createAsyncThunk(
   }
 )
 
-const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+// const local = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: cart,
+  initialState: [],
   reducers: {
     addToCart: (state, action) => {
       // console.log('cart add action', action.payload);
@@ -96,14 +96,14 @@ const cartSlice = createSlice({
         state.push({ ...action.payload, quantity: 1 });
         // state.push(action.payload);
       }
-      localStorage.setItem('cart', JSON.stringify(state));
+      // localStorage.setItem('local', JSON.stringify(state));
     },
     incrementQuantity: (state, action) => {
       const product = state.find((product) => product.id === action.payload);
       // console.log('this is increment --->', state);
       // console.log('this is action.payload --->', action.payload);
       product.quantity++;
-      localStorage.setItem('cart', JSON.stringify(state));
+      // localStorage.setItem('local', JSON.stringify(state));
     },
     decrementQuantity: (state, action) => {
       // console.log('this is decrement --->', state);
@@ -114,13 +114,13 @@ const cartSlice = createSlice({
       } else {
         product.quantity--;
       }
-      localStorage.setItem('cart', JSON.stringify(state));
+      // localStorage.setItem('local', JSON.stringify(state));
     },
     removeCart: (state, action) => {
       const removeCart = state.filter(
         (product) => product.id !== action.payload
         );
-        localStorage.setItem('cart', JSON.stringify(removeCart));
+        // localStorage.setItem('local', JSON.stringify(removeCart));
       return removeCart;
     },
   },

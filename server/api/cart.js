@@ -28,29 +28,29 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-// router.post('/:id', async (req, res, next) => {
-//   try {
-//     const cart = await CartItems.create(req.body);
-//     res.status(201).send(cart);
-//   } catch (err) {
-//     console.log(err.message);
-//     next(err);
-//   }
-// });
-
 router.post('/:id', async (req, res, next) => {
   try {
-    const currentOrder = await Cart.findOne({
-      where: {
-        userId: req.params.userId,
-      }
-    })
+    const cart = await CartItems.create(req.body);
     res.status(201).send(cart);
   } catch (err) {
     console.log(err.message);
     next(err);
   }
 });
+
+// router.post('/:id', async (req, res, next) => {
+//   try {
+//     const currentOrder = await Cart.findOne({
+//       where: {
+//         id: req.body.cartId,
+//       }
+//     })
+//     res.status(201).send(cart);
+//   } catch (err) {
+//     console.log(err.message);
+//     next(err);
+//   }
+// });
 
 router.put('/:cartId/:productId', async (req, res, next) => {
   try {
