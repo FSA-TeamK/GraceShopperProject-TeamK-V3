@@ -1,14 +1,18 @@
+import { EventBusy } from '@mui/icons-material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   adjustQtyAsync,
   decrementQuantity,
   incrementQuantity,
   removeCart,
+  removeItemAsync,
 } from '../../slices/cart/cartslice';
 
 const CartProduct = ({ id, imageUrl, name, price, quantity = 0 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const user = useSelector((state) => state.auth.me);
@@ -31,6 +35,24 @@ const CartProduct = ({ id, imageUrl, name, price, quantity = 0 }) => {
     dispatch(adjustQtyAsync(updatedItem));
   };
 
+  const handleDelete = (item) => {
+    // evt.preventDefault();
+    let productId = item.id;
+    let cartId = user.cartId;
+    const updatedItem = { productId, cartId };
+    dispatch(removeItemAsync(updatedItem))
+  };
+
+  // const handleDelete = (evt) => {
+  //   // evt.preventDefault();
+  //   // let productId = item.id;
+  //   // let cartId = user.cartId;
+  //   const updatedItem =  evt ;
+  //   dispatch(removeItemAsync(updatedItem)).then(() => {
+  //     navigate("/cart");
+  //   });
+  // };
+
   return (
     <div className="cartProduct">
       <div className="cartProduct_image">
@@ -51,6 +73,9 @@ const CartProduct = ({ id, imageUrl, name, price, quantity = 0 }) => {
               <button onClick={() => decreaseQty({ id, quantity })}>-</button>
               <p>{quantity}</p>
               <button onClick={() => increaseQty({ id, quantity })}>+</button>
+              <button onClick={() => handleDelete({ id })}>
+                Remove from Basket
+              </button>
             </>
           ) : (
             <>

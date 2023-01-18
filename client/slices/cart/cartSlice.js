@@ -16,12 +16,11 @@ export const fetchCartAsync = createAsyncThunk('cart', async (id) => {
 });
 
 
-
 export const addCartAsync = createAsyncThunk(
   '/addCartItems',
   async ({ quantity, cartId, productId, name, price }) => {
     try {
-      console.log('this is add cart data --->', quantity, cartId, productId, name, price);
+      // console.log('this is add cart data --->', quantity, cartId, productId, name, price);
       await axios.post(`http://localhost:8080/api/cart/${cartId}`, {
         quantity,
         cartId,
@@ -46,7 +45,7 @@ export const adjustQtyAsync = createAsyncThunk(
   async (cartItem) => {
     try {
       const { productId, quantity, cartId } = cartItem;
-      console.log('this is adjust qty data --->', cartItem)
+      // console.log('this is adjust qty data --->', cartItem)
       // const updatedCartQty = { productId, quantity, cartId };
       await axios.put(
         `http://localhost:8080/api/cart/${cartId}/${productId}`,
@@ -59,47 +58,69 @@ export const adjustQtyAsync = createAsyncThunk(
       return data;
     } catch (err) {
       alert('err occured when adjusting qty, check console');
-      console.log(err.response.data);
-      // console.log(err);
+      console.log(err);
     }
   }
 );
 
+export const removeItemAsync = createAsyncThunk(
+  '/removeItem',
+  async (cartItem) => {
+    try {
+      const { productId, cartId } = cartItem;
+      console.log('this is remove item data --->', cartItem);
+      await axios.delete(`http://localhost:8080/api/cart/${cartId}/${productId}`);
+      const { data } = await axios.get(
+        `http://localhost:8080/api/cart/${cartId}`
+      );
+      return data;
+    } catch (err) {
+      alert('err occured when removing item, check console');
+      console.log(err);
+    }
+  }
+)
+
+const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: [],
+  initialState: cart,
   reducers: {
     addToCart: (state, action) => {
-      // console.log('cart action', action.payload);
+      // console.log('cart add action', action.payload);
       const product = state.find((product) => product.id === action.payload.id);
       if (product) {
         product.quantity++;
       } else {
         state.push({ ...action.payload, quantity: 1 });
         // state.push(action.payload);
-        // state.cart.push(action.payload);
       }
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     incrementQuantity: (state, action) => {
       const product = state.find((product) => product.id === action.payload);
-      console.log('this is increment --->', state);
-      console.log('this is action.payload --->', action.payload);
+      // console.log('this is increment --->', state);
+      // console.log('this is action.payload --->', action.payload);
       product.quantity++;
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     decrementQuantity: (state, action) => {
-      console.log('this is decrement --->', state);
-      console.log('this is action.payload --->', action.payload);
+      // console.log('this is decrement --->', state);
+      // console.log('this is action.payload --->', action.payload);
       const product = state.find((product) => product.id === action.payload);
       if (product.quantity === 1) {
         product.quantity = 1;
       } else {
         product.quantity--;
       }
+      localStorage.setItem('cart', JSON.stringify(state));
     },
     removeCart: (state, action) => {
       const removeCart = state.filter(
         (product) => product.id !== action.payload
-      );
+        );
+        localStorage.setItem('cart', JSON.stringify(removeCart));
       return removeCart;
     },
   },
@@ -114,6 +135,12 @@ const cartSlice = createSlice({
     });
     builder.addCase(adjustQtyAsync.fulfilled, (state, action) => {
       console.log('EDIT action.payload  --->', action.payload);
+      return action.payload;
+    });
+    builder.addCase(removeItemAsync.fulfilled, (state, action) => {
+      console.log('REMOVE action.payload  --->', action.payload);
+      // const deleteState = state.filter((item) => item.id != action.payload.id);
+      // return deleteState;
       return action.payload;
     });
   },

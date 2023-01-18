@@ -14,6 +14,14 @@ const Cart = () => {
   const guestCart = useSelector((state) => state.cart);
   console.log('this is guest cart--->', guestCart);
 
+  const cartTotal = () => {
+    let total = 0;
+    cart.forEach(product => {
+        total += product.price * product.quantity
+    })
+    return total
+}
+
   return (
     <div id="cartDiv">
       <p id="cartText">Guest Cart</p>
@@ -37,6 +45,7 @@ const Cart = () => {
       <Link id="checkout" to="/checkout">
         Proceed to checkout
       </Link>
+      <p>Total: ${cartTotal()}</p>
     </div>
   );
 };

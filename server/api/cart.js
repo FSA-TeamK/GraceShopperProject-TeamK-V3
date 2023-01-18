@@ -28,9 +28,23 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+// router.post('/:id', async (req, res, next) => {
+//   try {
+//     const cart = await CartItems.create(req.body);
+//     res.status(201).send(cart);
+//   } catch (err) {
+//     console.log(err.message);
+//     next(err);
+//   }
+// });
+
 router.post('/:id', async (req, res, next) => {
   try {
-    const cart = await CartItems.create(req.body);
+    const currentOrder = await Cart.findOne({
+      where: {
+        userId: req.params.userId,
+      }
+    })
     res.status(201).send(cart);
   } catch (err) {
     console.log(err.message);
@@ -47,8 +61,6 @@ router.put('/:cartId/:productId', async (req, res, next) => {
       where: {
         cartId: req.params.cartId, //* this is the cart id
         productId: req.params.productId, // this is the cartItem id not the product id
-        // id: req.body.id, // product id is in the req.body
-
       }
     });
     // const updateCartItem = await CartItems.findByPk(req.params.id); //! Uses the wrong primary key this is the CART PK not the cartItem PK
@@ -60,7 +72,14 @@ router.put('/:cartId/:productId', async (req, res, next) => {
 
 router.delete('/:cartId/:productId', async (req, res, next) => {
   try {
-
+    const deleteCartItem = await CartItems.findOne({
+      where: {
+        cartId: req.params.cartId,
+        productId: req.params.productId
+      }
+    });
+    await deleteCartItem.destroy();
+    res.json(deleteCartItem);
   } catch(err) {
     next(err)
   }
