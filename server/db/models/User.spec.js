@@ -41,6 +41,7 @@ describe('User model', () => {
             await User.authenticate({
               username: 'lucy@gmail.com',
               password: '123'
+            
             });
             throw 'nooo';
           }

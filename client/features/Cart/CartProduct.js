@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { removeCart } from '../../slices/cart/cartslice';
+import { removeCart } from '../../slices/cart/cartSlice';
 
 const CartProduct = ({id, imageUrl, name, price}) => {
     const dispatch = useDispatch();

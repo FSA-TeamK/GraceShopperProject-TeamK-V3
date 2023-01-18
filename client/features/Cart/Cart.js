@@ -3,7 +3,7 @@ import Checkout from '../Checkout/Checkout';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartProduct from './CartProduct';
-import { selectCart } from '../../slices/cart/cartslice';
+import { selectCart } from '../../slices/cart/cartSlice';
 
 const Cart = () => {
     const cart = useSelector(selectCart)

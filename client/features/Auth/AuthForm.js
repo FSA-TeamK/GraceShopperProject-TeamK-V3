@@ -1,6 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authenticate } from '../../app/store';
+import axios from 'axios';
+import { useState } from 'react';
+
 
 /**
   The AuthForm component can be used for Login or Sign Up.
@@ -11,12 +14,24 @@ import { authenticate } from '../../app/store';
 const AuthForm = ({ name, displayName }) => {
   const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [showUsers, setShowUsers] = useState(false);
+  const [users, setUsers] = useState([]);
+
+  const user = useSelector((state) => state.auth.me);
+
+  const getUsers = async () => {
+    const { data } = await axios.get('/api/users');
+    setUsers(data);
+    setShowUsers(true);
+  };
+
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const formName = evt.target.name;
     const username = evt.target.username.value;
     const password = evt.target.password.value;
+    console.log(evt.target.username.value)
     dispatch(authenticate({ username, password, method: formName }));
   };
 
@@ -40,8 +55,35 @@ const AuthForm = ({ name, displayName }) => {
         </div>
         {/* {error && <div> {error} </div>} */}
       </form>
+
+    {user && user.isAdmin ? <button onClick={getUsers}>Show Users</button>: null}
+    {showUsers ? <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Password</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {users.map((user) => {
+          return (
+            <tr key={user.id}>
+              <td>{user.email}</td>
+              <td>{user.password}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table> : null}
+
     </div>
   );
+
+  
+
+
+  
 };
 
 export default AuthForm;

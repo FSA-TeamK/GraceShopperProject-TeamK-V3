@@ -1,11 +1,20 @@
 import React, { useState} from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { selectAllProducts } from "../../slices/products/productSlice";
+import { deleteProductAsync } from "../../slices/products/productSlice";
+import {navigate} from "react-router-dom";
+
 
 const AllProducts = () => {
     const products = useSelector(selectAllProducts)
-    // console.log('this is products --->', products)
+    const user = useSelector((state) => state.auth.me);
+    const dispatch = useDispatch();
+    console.log("user", user)
+    const handleDelete = (id) => {
+        dispatch(deleteProductAsync(id))
+    }
+
 
     return(
         <div>
@@ -14,6 +23,7 @@ const AllProducts = () => {
                 products.map((product) => {
                     return (
                         <div key={product.id} className="allProductsUl">
+                            {user && user.isAdmin && <button onClick={() =>handleDelete(product.id)}>Delete</button>} 
                             <Link to={`/products/${product.id}`}>
                                 <img src={product.imageUrl} />
                             </Link>
@@ -26,4 +36,78 @@ const AllProducts = () => {
     )
 } 
 
-export default AllProducts
+
+
+const AddProduct = () => {
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
+    const user = useSelector((state) => state.auth.me);
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (user && user.isAdmin) {
+            addProduct({ name, description, price, quantity, imageUrl });
+            navigate("/products");
+        }
+    };
+
+
+   
+
+    return (
+        <div>
+            {user && user.isAdmin ? (
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Price"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Quantity"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Image URL"
+                        value={imageUrl}
+                        onChange={(e) => setImageUrl(e.target.value)}
+                    />
+                    <button type="submit">Add Product</button>
+                </form>
+            ) : (
+                <h1> Only Admins can add products </h1>
+            )}
+        </div>
+    );
+};
+const ProductPage = () => {
+    return (
+        <div>
+            <AllProducts />
+            <AddProduct />
+        </div>
+    );
+}
+
+export default ProductPage;
+

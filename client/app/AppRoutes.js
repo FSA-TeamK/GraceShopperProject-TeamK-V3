@@ -28,15 +28,18 @@ const AppRoutes = () => {
           <Route path='/products' element={<AllProducts />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/checkout' element={<Checkout />} />
-          <Route path='/products/:id' element={<SingleProduct />} />
-          <Route path='/*' element={<Home />} />
+          <Route path='/products/:id' element={<SingleProduct />} />         
           <Route path='/home' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route
+            path="/login"
+            element={<AuthForm name="login" displayName="Login" />}
+          />
         </Routes>
       ) : (
         <Routes>
           <Route
-            path="/*"
+            path="/"
             element={<AuthForm name="login" displayName="Login" />}
           />
           <Route
