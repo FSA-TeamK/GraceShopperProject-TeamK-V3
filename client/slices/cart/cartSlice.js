@@ -1,20 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-// const initialState = {
-//     cart: [{ id: 1, name: 'Nike Air Force 1', price: 100, quantity: 1 }, { id: 2, name: 'Nike Air Max 90', price: 120, quantity: 1}],
-// }
-
-// const initialState= [{
-//     id: 1,
-//     name: "Nike Air Force 1",
-//     description: "The Nike Air Force 1 is a classic basketball shoe that has been around since 1982. It was the first basketball shoe to feature Nike Air technology, which provides lightweight cushioning. The shoe is also known for its iconic Swoosh logo, which was designed by Carolyn Davidson.",
-//     price: 100,
-//     rating: 4,
-//     imageUrl: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/b7d9211c-26e7-431a-ac24-b0540fb3c00f/air-force-1-07-mens-shoes-5QFp5Z.png",
-//     categories: "CASUAL",
-// }]
-
 // const initialState = {
 //     cart: [],
 // }
@@ -30,15 +15,7 @@ export const fetchCartAsync = createAsyncThunk('cart', async (id) => {
   }
 });
 
-// export const fetchUserCartAsync = createAsyncThunk('userCart', async (id) => {
-//   try{
-//     let {data} = await axios.get(`http://localhost:8080/api/cart/${id}`);
-//     return data;
-//   } catch(err){
-//     alert('err occured when fetching userCart, check console');
-//     console.log(err);
-//   }
-// })
+
 
 export const addCartAsync = createAsyncThunk(
   '/addCartItems',
@@ -68,11 +45,13 @@ export const adjustQtyAsync = createAsyncThunk(
   '/adjustQty',
   async (cartItem) => {
     try {
-      const { id, quantity, cartId } = cartItem;
-      const updatedCartQty = { id, quantity, cartId };
+      const { productId, quantity, cartId } = cartItem;
+      console.log('this is adjust qty data --->', cartItem)
+      // const updatedCartQty = { productId, quantity, cartId };
       await axios.put(
-        `http://localhost:8080/api/cart/${cartId}/${id}`,
-        updatedCartQty
+        `http://localhost:8080/api/cart/${cartId}/${productId}`,
+        cartItem
+        // updatedCartQty
       );
       const { data } = await axios.get(
         `http://localhost:8080/api/cart/${cartId}`
@@ -80,7 +59,8 @@ export const adjustQtyAsync = createAsyncThunk(
       return data;
     } catch (err) {
       alert('err occured when adjusting qty, check console');
-      console.log(err);
+      console.log(err.response.data);
+      // console.log(err);
     }
   }
 );
@@ -132,19 +112,15 @@ const cartSlice = createSlice({
       console.log('this is action.payload --->', action.payload);
       return state.push(action.payload);
     });
-    // builder.addCase(fetchUserCartAsync.fulfilled, (state, action) => {
-    //   console.log('this is action.payload --->', action.payload);
-    //   return action.payload;
-    // });
     builder.addCase(adjustQtyAsync.fulfilled, (state, action) => {
-      console.log('this is action.payload --->', action.payload);
+      console.log('EDIT action.payload  --->', action.payload);
       return action.payload;
     });
   },
 });
 
 export const selectCart = (state) => {
-  console.log('this is state.cart --->', state.cart);
+  // console.log('this is state.cart --->', state.cart);
   return state.cart;
 };
 

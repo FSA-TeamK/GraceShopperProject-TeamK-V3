@@ -3,7 +3,7 @@ import Checkout from '../Checkout/Checkout';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CartProduct from './CartProduct';
-import { selectCart } from '../../slices/cart/cartslice';
+import { adjustQtyAsync, selectCart } from '../../slices/cart/cartslice';
 import { fetchCartAsync } from '../../slices/cart/cartslice';
 
 const UserCart = () => {
@@ -14,17 +14,31 @@ const UserCart = () => {
   const isLoggedIn = useSelector((state) => state.auth.me.id);
 
   const userCartId = useSelector((state) => state.auth.me.cartId);
-  console.log('userCartId', userCartId);
 
   const cart = useSelector((state) => state.cart);
   console.log('this is usercart--->', cart)
+  console.log('productId', cart.map((product) => product.product.id));
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn) { //* if user is logged in, fetch their cart
       console.log('about to fetch cart');
       dispatch(fetchCartAsync(userCartId));
     }
   }, [isLoggedIn]);
+
+    // const cartTotal = cart.reduce((acc, product) => {
+    //     return acc + product.price * product.quantity
+    // }
+    // , 0)
+
+    const cartTotal = () => {
+        let total = 0;
+        cart.forEach(product => {
+            total += product.price * product.quantity
+        })
+        return total
+    }
+    
 
   return (
     <div id="cartDiv">
@@ -32,7 +46,7 @@ const UserCart = () => {
       {cart?.map((product) => (
         <CartProduct
           key={product.id}
-          id={product.id}
+          id={product.product.id}
           imageUrl={product.product.imageUrl} 
           name={product.name}
           price={product.price}

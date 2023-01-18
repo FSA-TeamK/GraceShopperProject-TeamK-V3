@@ -1,6 +1,7 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
+  adjustQtyAsync,
   decrementQuantity,
   incrementQuantity,
   removeCart,
@@ -8,6 +9,27 @@ import {
 
 const CartProduct = ({ id, imageUrl, name, price, quantity = 0 }) => {
   const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const user = useSelector((state) => state.auth.me);
+
+  const increaseQty = (item) => {
+    let productId = item.id; //* this is the product id
+    let quantity = item.quantity;
+    quantity++;
+    let cartId = user.cartId;
+    const updatedItem = { productId, quantity, cartId };
+    dispatch(adjustQtyAsync(updatedItem));
+  };
+
+  const decreaseQty = (item) => {
+    let productId = item.id;
+    let quantity = item.quantity;
+    quantity--;
+    let cartId = user.cartId;
+    const updatedItem = { productId, quantity, cartId };
+    dispatch(adjustQtyAsync(updatedItem));
+  };
 
   return (
     <div className="cartProduct">
@@ -24,13 +46,23 @@ const CartProduct = ({ id, imageUrl, name, price, quantity = 0 }) => {
           <p>⭐</p>
         </div>
         <div className="cartProduct_incrDec">
-          <button onClick={() => dispatch(decrementQuantity(id))}>-</button>
-          <p>{quantity}</p>
-          <button onClick={() => dispatch(incrementQuantity(id))}>+</button>
+          {isLoggedIn ? (
+            <>
+              <button onClick={() => decreaseQty({ id, quantity })}>-</button>
+              <p>{quantity}</p>
+              <button onClick={() => increaseQty({ id, quantity })}>+</button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => dispatch(decrementQuantity(id))}>-</button>
+              <p>{quantity}</p>
+              <button onClick={() => dispatch(incrementQuantity(id))}>+</button>
+              <button onClick={() => dispatch(removeCart(id))}>
+                Remove from Basket
+              </button>
+            </>
+          )}
         </div>
-        <button onClick={() => dispatch(removeCart(id))}>
-          Remove from Basket
-        </button>
       </div>
     </div>
   );
