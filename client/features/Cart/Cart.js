@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Checkout from '../Checkout/Checkout';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CartProduct from './CartProduct';
 import './cart.css';
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart); 
+  const dispatch = useDispatch();
 
-  console.log('this is cart--->', cart);
+  const cart = useSelector(selectCart);
+
+  const guestCart = useSelector((state) => state.cart);
+  console.log('this is guest cart--->', guestCart);
+
+  const cartTotal = () => {
+    let total = 0;
+    cart.forEach(product => {
+        total += product.price * product.quantity
+    })
+    return total
+}
+
   return (
     <div id="cartDiv">
-      <p id="cartText">My Cart</p>
-      {cart?.map((product) => (
+      <p id="cartText">Guest Cart</p>
+      {guestCart?.map((product) => (
         <CartProduct
         key={product.id}
         id={product.id}
@@ -22,12 +35,10 @@ const Cart = () => {
         quantity={product.quantity}
           />
       ))}
-      <div>
-        <p id='totalText'>Total: $ </p>
-      </div>
       <Link id="checkout" to="/checkout">
         Proceed to checkout
       </Link>
+      <p>Total: ${cartTotal()}</p>
     </div>
   );
 };
