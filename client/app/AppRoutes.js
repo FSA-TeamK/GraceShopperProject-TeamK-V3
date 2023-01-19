@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { me } from './store.js';
-import { AllProducts, SingleProduct, Home, Checkout, Cart, AuthForm, SignUp} from '../features/index.js'
+import { AllProducts, SingleProduct, Home, Checkout, Payment, Cart, AuthForm, SignUp} from '../features/index.js'
 import { fetchProductsAsync } from '../slices/products/productSlice';
 
 /**
@@ -28,6 +28,7 @@ const AppRoutes = () => {
           <Route path='/products' element={<AllProducts />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/checkout' element={<Checkout />} />
+          <Route path='/payment' element={<Payment />} />
           <Route path='/products/:id' element={<SingleProduct />} />
           <Route path='/*' element={<Home />} />
           <Route path='/home' element={<Home />} />
