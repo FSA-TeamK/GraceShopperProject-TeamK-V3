@@ -9,5 +9,6 @@ export {default as Footer} from './Footer/Footer.js';
 export {default as AuthForm} from './Auth/AuthForm.js';
 export {default as SignUp} from './SignUp/SignUp.js';
 export {default as UserCart} from './Cart/UserCart.js';
+export {default as Payment} from './Payment/Payment.js';
 
 

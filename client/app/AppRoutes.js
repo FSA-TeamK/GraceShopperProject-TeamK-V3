@@ -10,7 +10,8 @@ import {
   Cart,
   AuthForm,
   SignUp,
-  UserCart
+  UserCart,
+  Payment
 } from '../features/index.js';
 import { fetchProductsAsync } from '../slices/products/productSlice';
 
@@ -37,6 +38,7 @@ const AppRoutes = () => {
           <Route path="/products" element={<AllProducts />} />
           <Route path="/cart" element={<UserCart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path='/payment' element={<Payment />} />
           <Route path="/products/:id" element={<SingleProduct />} />
           <Route path="/*" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -51,6 +53,7 @@ const AppRoutes = () => {
           <Route path="/products" element={<AllProducts />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path='/payment' element={<Payment />} />
           <Route path="/products/:id" element={<SingleProduct />} />
           <Route path="/*" element={<Home />} />
           <Route path="/home" element={<Home />} />

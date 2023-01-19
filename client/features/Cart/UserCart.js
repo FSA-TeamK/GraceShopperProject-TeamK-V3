@@ -58,7 +58,7 @@ const UserCart = () => {
           quantity={product.quantity}
         />
       ))}
-      <Link id="checkout" to="/checkout">
+      <Link id="checkout" to="/payment">
         Proceed to checkout...
       </Link>
       <p>Total: ${cartTotal()}</p>
