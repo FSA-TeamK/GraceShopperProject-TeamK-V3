@@ -11,6 +11,8 @@ import {
 } from '../../slices/products/singleProductSlice';
 import { me } from '../Auth/authSlice';
 import { formControlClasses } from "@mui/material";
+import axios from 'axios';
+import { useState } from 'react';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -21,8 +23,13 @@ const SingleProduct = () => {
   const user = useSelector((state) => state.auth.me);
 
   const product = useSelector(selectSingleProduct);
+  const [showForm, setShowForm] = useState(false);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const { name, description, price, quantity, imageUrl } = product;
-  // console.log("single",singleProduct);
 
   const addToUserCart = async (product) => {
     let quantity = 1;

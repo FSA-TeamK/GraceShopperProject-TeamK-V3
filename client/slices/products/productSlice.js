@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import AddProduct from '../../features/AllProducts/AllProducts';
 
 const initialState = []; // <--- this is where the initial state is being set
 
@@ -14,6 +15,32 @@ export const fetchProductsAsync = createAsyncThunk('allProducts', async () => {
   }
 });
 
+export const addProductAsync = createAsyncThunk('addProduct', async ({name, description, price, imageUrl, categories})  => {
+  try{
+    const {data} = await axios.post('http://localhost:8080/api/products', {
+      name,
+      description,
+      price, 
+      imageUrl,
+      categories
+    });
+    return data;
+  } catch (err) {
+    alert('err addProduct, check console log');
+    console.log(err)
+  }
+})
+
+export const deleteProductAsync = createAsyncThunk('deleteProduct', async (id) => {
+  try {
+    let { data } = await axios.delete('http://localhost:8080/api/products/' + id); 
+    return id;
+  } catch (err) {             
+    console.log('this is err --->', err); 
+    return err; 
+  }
+});
+
 const allProductsSlice = createSlice({
     name: 'allProducts',
     initialState,
@@ -22,7 +49,14 @@ const allProductsSlice = createSlice({
         builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
             // console.log('this is action.payload --->', action.payload)
             return action.payload;
-        });
+        }), 
+        builder.addCase(deleteProductAsync.fulfilled, (state, action) => {
+            // console.log('this is action.payload --->', action.payload)
+            return state.filter(product => product.id !== action.payload);
+        }),
+        builder.addCase(addProductAsync.fulfilled, (state, action) => {
+            state.push(action.payload);
+        })
     }
 });
 

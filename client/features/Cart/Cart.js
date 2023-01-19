@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CartProduct from './CartProduct';
 import './cart.css';
-import { selectCart } from '../../slices/cart/cartslice';
+import { selectCart } from '../../slices/cart/cartSlice';
 
 const Cart = () => {
   const dispatch = useDispatch();
