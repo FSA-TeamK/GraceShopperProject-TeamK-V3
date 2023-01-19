@@ -30,13 +30,17 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newUser = await User.create(req.body);
-    await Cart.create({
-      userId: newUser.id,
-    });
-    res.status(201).send(newUser);
+    const newCart = await Cart.create();
+    // console.log('newcart Id ------>', newCart.id);
+    const user = await User.create({ ...req.body, cartId: newCart.id });
+    // console.log('newuser----->', user);
+    res.send({ token: await user.generateToken() });
   } catch (err) {
-    next(err);
+    if (err.name === 'SequelizeUniqueConstraintError') {
+      res.status(401).send('User already exists');
+    } else {
+      next(err);
+    }
   }
 });
 

@@ -1,4 +1,4 @@
-import { EventBusy } from '@mui/icons-material';
+// import { EventBusy } from '@mui/icons-material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,9 +19,12 @@ const CartProduct = ({ id, imageUrl, name, price, size, quantity = 0 }) => {
 
   const increaseQty = (item) => {
     let productId = item.id; //* this is the product id
+    console.log("increase productid ------>", productId)
     let quantity = item.quantity;
+    console.log("increase quant ------>", quantity);
     quantity++;
     let cartId = user.cartId;
+    console.log("increase cartid ------>", user.cartId);
     const updatedItem = { productId, quantity, cartId };
     dispatch(adjustQtyAsync(updatedItem));
   };
