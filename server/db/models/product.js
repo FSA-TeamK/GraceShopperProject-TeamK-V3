@@ -34,7 +34,7 @@ const Product = db.define('product', {
     },
      imageUrl: {
         type: Sequelize.STRING,
-        defaultValue: ''
+        defaultValue: 'https://assets.hermes.com/is/image/hermesproduct/expert-sneaker--221896ZH92-worn-1-0-0-1000-1000_b.jpg'
     },
     categories: {
         type:Sequelize.ENUM("ATHLETIC", "CASUAL"),

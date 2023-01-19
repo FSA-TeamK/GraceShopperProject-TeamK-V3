@@ -1,9 +1,9 @@
 import React, { useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAllProducts } from "../../slices/products/productSlice";
-import { deleteProductAsync } from "../../slices/products/productSlice";
-import {navigate} from "react-router-dom";
+// import { selectAllProducts } from "../../slices/products/productSlice";
+import { deleteProductAsync, addProductAsync, selectAllProducts } from "../../slices/products/productSlice";
+// import {navigate} from "react-router-dom";
 
 
 const AllProducts = () => {
@@ -14,7 +14,6 @@ const AllProducts = () => {
     const handleDelete = (id) => {
         dispatch(deleteProductAsync(id))
     }
-
 
     return(
         <div>
@@ -42,21 +41,24 @@ const AddProduct = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [quantity, setQuantity] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const [categories, setCategories] = useState("")
+
     const user = useSelector((state) => state.auth.me);
+
+    const products = useSelector(selectAllProducts);
+
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const dispatch = useDispatch();
+
+    const handleSubmit = async (evt) => {
+        evt.preventDefault();
         if (user && user.isAdmin) {
-            addProduct({ name, description, price, quantity, imageUrl });
+            dispatch (addProductAsync({name, description, price, imageUrl, categories}))
             navigate("/products");
         }
     };
-
-
-   
 
     return (
         <div>
@@ -80,12 +82,11 @@ const AddProduct = () => {
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                     />
-                    <input
-                        type="text"
-                        placeholder="Quantity"
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                    />
+                    <select value = {categories} onChange={(e) => setCategories(e.target.value)}>
+                        <option value="ATHLETIC">Athletic</option>
+                        <option value="CASUAL">Casual</option>
+                    </select>
+                
                     <input
                         type="text"
                         placeholder="Image URL"
@@ -110,4 +111,13 @@ const ProductPage = () => {
 }
 
 export default ProductPage;
+
+
+
+
+
+
+
+
+
 

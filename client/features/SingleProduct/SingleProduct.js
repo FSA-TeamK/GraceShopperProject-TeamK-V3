@@ -27,6 +27,8 @@ const SingleProduct = () => {
 
   useEffect(() => {
     dispatch(fetchSingleProductAsync(id));
+  }, [dispatch, id]);
+  useEffect(()=>{
     if(product){
         setName(product.name);
         setDescription(product.description);
@@ -34,7 +36,7 @@ const SingleProduct = () => {
         setQuantity(product.quantity);
         setImageUrl(product.imageUrl);
     }
-  }, [product,dispatch, id]);
+  }, [product])
   
   if (!product) return null;
 
@@ -56,7 +58,9 @@ const SingleProduct = () => {
       {showForm ? ( <form onSubmit={async(e)=>{ //show form when clicked
           e.preventDefault();
           const res=await axios.put(`/api/products/${id}`, {name, description, price, quantity, imageUrl}) //put request to update product
-          setShowForm(false); //hide form after submit
+          setShowForm(false); 
+          dispatch(fetchSingleProductAsync(id));
+          //hide form after submit
       }}> 
         <input value={name}onChange={(e)=>setName(e.target.value)} type="text" placeholder="name" /> 
         <input value={description}onChange={(e)=>setDescription(e.target.value)} type="text" placeholder="description" />
