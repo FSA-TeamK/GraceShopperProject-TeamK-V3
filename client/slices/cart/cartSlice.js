@@ -13,7 +13,7 @@ export const fetchCartAsync = createAsyncThunk('cart', async (id) => {
     console.log(err);
     return err;
   }
-});
+})
 
 
 export const addCartAsync = createAsyncThunk(

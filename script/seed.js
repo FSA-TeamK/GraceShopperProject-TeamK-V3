@@ -54,6 +54,26 @@ async function seed() {
       imageUrl: 
       'https://www.converse.com/dw/image/v2/BCZC_PRD/on/demandware.static/-/Sites-cnv-master-catalog/default/dw98db472f/images/a_08/560845C_A_08X1.jpg?sw=406',
       categories: "CASUAL"
+    }),
+    Product.create({
+      name: 'Jordan 11 Bred',
+      description:
+      'The Air Jordan 11 (XI) is a classic basketball shoe that was released in 1995. It features a patent leather upper, which provides durability and support. The shoe is also known for its iconic Swoosh logo, which was designed by Carolyn Davidson.',
+      price: 200,
+      rating: 5,
+      imageUrl:
+      'https://www.kicksonfire.com/wp-content/uploads/2019/11/air-jordan-11-bred-19.jpg',
+      categories: "ATHLETIC"
+    }),
+    Product.create({
+      name: 'Jordan 1 Retro High OG',
+      description:
+      'The Air Jordan 1 Retro High OG is a classic basketball shoe that was released in 1985. It features a leather upper, which provides durability and support. The shoe is also known for its iconic Swoosh logo, which was designed by Carolyn Davidson.',
+      price: 200,
+      rating: 5,
+      imageUrl:
+      'https://images.stockx.com/images/Air-Jordan-1-Retro-High-OG-Chicago-Reimagined-Product.jpg?fit=fill&bg=FFFFFF&w=1200&h=857&fm=webp&auto=compress&dpr=2&trim=color&updated_at=1665691099&q=75',
+      categories: "ATHLETIC"
     })
     
   ]);
