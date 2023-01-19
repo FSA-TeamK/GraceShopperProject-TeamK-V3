@@ -179,7 +179,7 @@ const AddProduct = () => {
                     <button type="submit">Add Product</button>
                 </form>
             ) : (
-                <h1> Only Admins can add products </h1>
+                <h1></h1>
             )}
         </div>
     );
