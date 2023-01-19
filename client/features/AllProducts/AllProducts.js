@@ -8,17 +8,22 @@ import Filter from '../Filter/Filter'
 import star from '../pictures/star.png'
 
 const AllProducts = () => {
-
+// products = getting all products through redux
     const products = useSelector(selectAllProducts)
     // console.log('this is products --->', products)
 
+// filter to give us products we want to see by order and type 
+// order is for sorting select
+// types array is for categories
     const [productFilter, setProductFilter] = useState({
         order: 0,
         types: []
     })
 
-    
+// use state 
     const [filterProducts, setFilterProducts] = useState(products)
+
+    // useEffect is ran everytime filter is updated
     useEffect(() => {
         let tempProducts = [...products]
 // checking which category is checked and returning accordingly
@@ -58,13 +63,17 @@ const AllProducts = () => {
                 })
         }
         }
+
+        // setting filter products to tempProducts
         setFilterProducts(tempProducts)
     },[productFilter, products])
 
+
+    // how we're changing the filter
     const sortingFilter = (value) => {
         setProductFilter({...productFilter, order: value})
     }
-
+// checking the value if it has a value sending it into the current types array if not filter out and remove value from array
     const categoryFilter =  (category, value) => {
         let currTypes = [...productFilter.types]
         if(value){
