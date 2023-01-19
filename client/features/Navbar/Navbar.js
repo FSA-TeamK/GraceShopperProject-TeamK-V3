@@ -6,6 +6,7 @@ import mainlogo from '../pictures/mainlogo.png';
 // import cart from '../pictures/cart.png';
 import {ShoppingBasket} from '@mui/icons-material'
 import './navbar.css'
+import OrderHx from '../OrderHx/orderHx.js';
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -47,7 +48,8 @@ const Navbar = () => {
             <Link className="navLinks" to="/home">
               Home
             </Link>
-          <Link className='sneakBtns' to="/products" >Explore</Link>
+          <Link className='sneakBtns' to="/products">Explore</Link>
+          <Link className='sneakBtns' to="/orderHx">Order History</Link>
             {/* <button className="sneakBtns" type="button" onClick={AthleticBtn}>
               Athletic
             </button>

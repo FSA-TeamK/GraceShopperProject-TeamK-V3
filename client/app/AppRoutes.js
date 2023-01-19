@@ -11,7 +11,8 @@ import {
   AuthForm,
   SignUp,
   UserCart,
-  Payment
+  Payment,
+  OrderHx
 } from '../features/index.js';
 import { fetchProductsAsync } from '../slices/products/productSlice';
 
@@ -43,6 +44,7 @@ const AppRoutes = () => {
           <Route path="/*" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/orderHx" element={<OrderHx />} />
           <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
