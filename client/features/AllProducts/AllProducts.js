@@ -54,8 +54,11 @@ const AddProduct = () => {
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         if (user && user.isAdmin) {
-            dispatch (addProductAsync({name, description, price, imageUrl, categories}))
-            navigate("/products");
+            let newProduct = {name, description, price, imageUrl, categories}
+            console.log("newProduct ----->", newProduct);
+            dispatch (addProductAsync(newProduct)).then(() => {
+                navigate("/products");
+            });
         }
     };
 
