@@ -69,7 +69,7 @@ const CartProduct = ({ id, imageUrl, name, price, size, quantity = 0 }) => {
           <strong>{price}</strong>
         </p>
         <div>
-        <p>Size: {size}</p>
+        <p>Size:{size}</p>
         </div>
         <div id='quantSect'>
           {isLoggedIn ? (

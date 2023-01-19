@@ -55,13 +55,14 @@ const UserCart = () => {
           imageUrl={product.product.imageUrl}
           name={product.name}
           price={product.price}
+          size={product.product.size}
           quantity={product.quantity}
         />
       ))}
+      <p id='totalText'>Total: ${cartTotal()}</p>
       <Link id="checkout" to="/payment">
         Proceed to checkout...
       </Link>
-      <p>Total: ${cartTotal()}</p>
     </div>
   );
 };

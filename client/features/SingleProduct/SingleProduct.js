@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './singleProduct.css';
-import { addToCart } from '../../slices/cart/cartslice';
-import { addCartAsync } from '../../slices/cart/cartslice';
+import { addToCart, addCartAsync } from '../../slices/cart/cartslice';
+// import { addCartAsync } from '../../slices/cart/cartslice';
 import {
   fetchSingleProductAsync,
   selectSingleProduct,

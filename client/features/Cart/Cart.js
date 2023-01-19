@@ -39,7 +39,7 @@ const Cart = () => {
       <Link id="checkout" to="/payment">
         Proceed to checkout
       </Link>
-      <p>Total: ${cartTotal()}</p>
+      <p id='totalText'>Total: ${cartTotal()}</p>
     </div>
   );
 };

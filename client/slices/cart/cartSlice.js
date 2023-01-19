@@ -18,7 +18,7 @@ export const fetchCartAsync = createAsyncThunk('cart', async (id) => {
 
 export const addCartAsync = createAsyncThunk(
   '/addCartItems',
-  async ({ quantity, cartId, productId, name, price }) => {
+  async ({ quantity, cartId, productId, name, price, size }) => {
     try {
       // console.log('this is add cart data --->', quantity, cartId, productId, name, price);
       await axios.post(`http://localhost:8080/api/cart/${cartId}`, {
@@ -27,6 +27,7 @@ export const addCartAsync = createAsyncThunk(
         productId,
         name,
         price,
+        size
       });
       // console.log('this is add cart data --->', data);
       const { data } = await axios.get(
@@ -34,7 +35,7 @@ export const addCartAsync = createAsyncThunk(
       );
       return data;
     } catch (err) {
-      alert('err occured when adding item, check console');
+      // alert('err occured when adding item, check console');
       console.log(err);
     }
   }

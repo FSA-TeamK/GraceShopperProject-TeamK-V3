@@ -29,8 +29,10 @@
   }
   
   #singProdImg{
-    width: 500px;
+    width: 450px;
     height: auto;
+    margin-left: 1px;
+    /* object-fit: fill; */
   }
   
   .sizeBtns{
