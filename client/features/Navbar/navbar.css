@@ -1,0 +1,38 @@
+/* NAV BAR STYLE */
+
+#navDiv{
+    background-color: black;
+  }
+  
+  #navBar{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+  }
+  
+  #mainlogo{
+    width: 50px;
+    height: auto;
+  }
+  
+  .navLinks{
+    color: white;
+  }
+  
+  .sneakBtns{
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .navbarLi{
+    align-self: baseline;
+  }
+  
+  #cart{
+    width: 30px;
+    height: auto;
+  }

@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store.js';
 import mainlogo from '../pictures/mainlogo.png';
-import cart from '../pictures/cart.png';
-// import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+// import cart from '../pictures/cart.png';
+import {ShoppingBasket} from '@mui/icons-material'
+import './navbar.css'
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -47,16 +48,16 @@ const Navbar = () => {
               Home
             </Link>
           <Link className='sneakBtns' to="/products" >Explore</Link>
-            <button className="sneakBtns" type="button" onClick={AthleticBtn}>
+            {/* <button className="sneakBtns" type="button" onClick={AthleticBtn}>
               Athletic
             </button>
             <button className="sneakBtns" type="button" onClick={CasualBtn}>
               Casual
-            </button>
+            </button> */}
           </li>
           <li className="navbarLi">
-            <input placeholder="search..." type="text" />
-            <input onClick={SearchSneaks} type="submit" />
+            {/* <input placeholder="search..." type="text" /> */}
+            {/* <input onClick={SearchSneaks} type="submit" /> */}
             <Link className="navLinks" to="/login">
               Login
             </Link>
@@ -64,8 +65,8 @@ const Navbar = () => {
               Sign Up
             </Link>
             <Link to="/cart">
-              {/* <ShoppingBasket /> */}
-              <span className='nav_cartCount'>0</span>
+              <ShoppingBasket />
+              {/* <span className='nav_cartCount'>{cart.length}</span> */}
             </Link>
           </li>
         </ul>
@@ -87,7 +88,6 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      <hr />
     </div>
   );
 };

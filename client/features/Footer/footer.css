@@ -1,0 +1,30 @@
+/* FOOTER STYLE */
+
+#footerNav{
+    padding: 10px;
+    background-color: black;
+    color: white;
+  }
+  
+  #footerUl{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  .footerLi{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #socials{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  
+  .socialLi{
+    padding: 3px;
+  }

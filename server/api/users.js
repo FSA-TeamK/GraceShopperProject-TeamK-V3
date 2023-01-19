@@ -1,55 +1,46 @@
-const router = require('express').Router()
-const { models: { User, Product, Cart, CartItems }} = require('../db')
+const router = require('express').Router();
+const {
+  models: { User, Product, Cart, CartItems },
+} = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
-      const users = await User.findAll({
-        // explicitly select only the id and username fields - even though
-        // only admins should be able to see any users information.   
-                                                                                
-        // users' passwords are encrypted, it won't help if we just
-        // send everything to anyone who asks!
-        attributes: ['id', 'username', 'email', 'password', 'isAdmin']
-      })
-      res.json(users)
+    const users = await User.findAll({
+      // explicitly select only the id and username fields - even though
+      // only admins should be able to see any users information.
+
+      // users' passwords are encrypted, it won't help if we just
+      // send everything to anyone who asks!
+      attributes: ['id', 'username', 'email', 'password', 'isAdmin'],
+    });
+    res.json(users);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
-  
+});
+
 router.get('/:id', async (req, res, next) => {
-  try{
-    const userId = await User.findbyPk(req.params.id);
-    res.json(userId);
-  } catch (err){
-    next(err);
-  }
-});
-
-router.post("/", async (req, res, next) => {
-  try{
-    const newUser = await User.create(req.body);
-    res.status(201).send(newUser);
-  } catch(err){
-    next(err);
-  }
-});
-
-//* users/carts routes
-router.get('/carts', async (req, res, next) => {
   try {
-    const cartItems = await Product.findAll({
-      include: {
-        model: Cart,
-        where: {
-          // userId: req.params.userId,
-          status: 'CART'
-        }
-      }
-    })
-    res.json(cartItems)
-  } catch (error) {
-    next(error)
+    const userId = await User.findByPk(req.params.id);
+    res.json(userId);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newCart = await Cart.create();
+    // console.log('newcart Id ------>', newCart.id);
+    const user = await User.create({ ...req.body, cartId: newCart.id });
+    // console.log('newuser----->', user);
+    res.send({ token: await user.generateToken() });
+  } catch (err) {
+    if (err.name === 'SequelizeUniqueConstraintError') {
+      res.status(401).send('User already exists');
+    } else {
+      next(err);
+    }
   }
 });
 
@@ -57,7 +48,7 @@ router.get('/carts', async (req, res, next) => {
 router.post('/carts', async (req, res, next) => {
   try {
     // find the product in the db
-    const product = await Product.findByPk(req.param.id)
+    const product = await Product.findByPk(req.param.id);
 
     // find the user cart order
     // const currentOrder = await Cart.findOne({
@@ -69,17 +60,17 @@ router.post('/carts', async (req, res, next) => {
 
     // if the cart does not exist yet, create the cart
     // if (!currentOrder) {
-      const currentOrder = await Cart.create({
-        // userId: req.params.userId,
-        status: 'CART'
-      })
+    const currentOrder = await Cart.create({
+      // userId: req.params.userId,
+      status: 'CART',
+    });
 
-      await CartItems.create({
-        orderId: currentOrder.id,
-        productId: req.body.id,
-        quantity: 1,
-        purchasePrice: product.price
-      })
+    await CartItems.create({
+      orderId: currentOrder.id,
+      productId: req.body.id,
+      quantity: 1,
+      purchasePrice: product.price,
+    });
     // }
 
     // if the cart does exist, add the product to the cart
@@ -88,40 +79,22 @@ router.post('/carts', async (req, res, next) => {
         orderId: currentOrder.id,
         productId: req.body.id,
         quantity: 1,
-        purchasePrice: product.price
-      })
+        purchasePrice: product.price,
+      });
     }
 
     // retrieve the newly added item
     const newItem = await CartItems.findOne({
       where: {
         productId: product.id,
-        orderId: currentOrder.id
-      }
-    })
+        orderId: currentOrder.id,
+      },
+    });
 
-    res.json(newItem)
+    res.json(newItem);
   } catch (error) {
-    next(error)
+    next(error);
   }
-});
-
-//delete item from cart
-router.delete('/cart/:userId/:productId', async (req, res, next) => {
-    try {
-      const removeProduct = await Product.findByPk(req.params.productId)
-      const currentOrder = await Cart.findOne({
-        where: 
-        {
-          userId: req.params.userId,
-          status: 'CART'
-        }
-      })
-      await currentOrder.destroy(removeProduct)
-      res.sendStatus(204)
-    } catch (error) {
-      next(error)
-    }
 });
 
 // route to checkout cart
@@ -130,14 +103,14 @@ router.put('/checkout/:userId/', async (req, res, next) => {
     const order = await Cart.findOne({
       where: {
         userId: req.params.userId,
-        status: 'CART'
-      }
-    })
-    order.status = 'PURCHASED'
-    await order.save()
+        status: 'CART',
+      },
+    });
+    order.status = 'PURCHASED';
+    await order.save();
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
 
-module.exports = router
+module.exports = router;

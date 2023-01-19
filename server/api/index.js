@@ -1,10 +1,13 @@
 const router = require('express').Router()
 
 //* /api/users
-router.use('/users', require('./users'))
+router.use('/users', require('./users'));
 
 //* /api/products
-router.use('/products', require('./products'))
+router.use('/products', require('./products'));
+
+//* /api/cart
+router.use('/cart', require('./cart'));
 
 
 router.use((req, res, next) => {

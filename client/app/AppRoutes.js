@@ -2,7 +2,17 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { me } from './store.js';
-import { AllProducts, SingleProduct, Home, Checkout, Cart, AuthForm, SignUp} from '../features/index.js'
+import {
+  AllProducts,
+  SingleProduct,
+  Home,
+  Checkout,
+  Cart,
+  AuthForm,
+  SignUp,
+  UserCart,
+  Payment
+} from '../features/index.js';
 import { fetchProductsAsync } from '../slices/products/productSlice';
 
 /**
@@ -22,23 +32,36 @@ const AppRoutes = () => {
   }, [dispatch]);
 
   return (
-    <div id='routesDiv'>
+    <div id="routesDiv">
       {isLoggedIn ? (
         <Routes>
-          <Route path='/products' element={<AllProducts />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/checkout' element={<Checkout />} />
-          <Route path='/products/:id' element={<SingleProduct />} />
-          <Route path='/*' element={<Home />} />
-          <Route path='/home' element={<Home />} />
-          <Route path='/signup' element={<SignUp />} />
+          <Route path="/products" element={<AllProducts />} />
+          <Route path="/cart" element={<UserCart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path='/payment' element={<Payment />} />
+          <Route path="/products/:id" element={<SingleProduct />} />
+          <Route path="/*" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/login"
+            element={<AuthForm name="login" displayName="Login" />}
+          />
         </Routes>
       ) : (
         <Routes>
-          <Route
-            path="/*"
+          <Route path="/products" element={<AllProducts />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path='/payment' element={<Payment />} />
+          <Route path="/products/:id" element={<SingleProduct />} />
+          <Route path="/*" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          {/* <Route
+            path="/"
             element={<AuthForm name="login" displayName="Login" />}
-          />
+          /> */}
           <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}

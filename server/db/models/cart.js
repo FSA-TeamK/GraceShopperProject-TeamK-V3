@@ -9,6 +9,7 @@ const Cart = db.define('cart', {
         allowNull: false,
         defaultValue: "CART"
     }
+    
 });
 
 module.exports = Cart;

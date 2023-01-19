@@ -25,9 +25,10 @@ const store = configureStore({
     cart: cartSlice,
     users: userSlice
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export default store;
 // export const persitor = persistStore(store);
 export * from '../features/Auth/authSlice';
+
