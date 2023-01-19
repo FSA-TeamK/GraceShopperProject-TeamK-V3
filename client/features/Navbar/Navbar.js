@@ -4,8 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store.js';
 import mainlogo from '../pictures/mainlogo.png';
 // import cart from '../pictures/cart.png';
-// import {{ShoppingBasket}} from '@mui/icons-material'
-
+import {ShoppingBasket} from '@mui/icons-material'
 import './navbar.css'
 
 const Navbar = () => {
@@ -57,8 +56,8 @@ const Navbar = () => {
             </button> */}
           </li>
           <li className="navbarLi">
-            <input placeholder="search..." type="text" />
-            <input onClick={SearchSneaks} type="submit" />
+            {/* <input placeholder="search..." type="text" /> */}
+            {/* <input onClick={SearchSneaks} type="submit" /> */}
             <Link className="navLinks" to="/login">
               Login
             </Link>
@@ -66,8 +65,8 @@ const Navbar = () => {
               Sign Up
             </Link>
             <Link to="/cart">
-              {/* <ShoppingBasket /> */}
-              <span className='nav_cartCount'>0</span>
+              <ShoppingBasket />
+              {/* <span className='nav_cartCount'>{cart.length}</span> */}
             </Link>
           </li>
         </ul>

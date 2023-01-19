@@ -7,7 +7,7 @@ const initialState = []; // <--- this is where the initial state is being set
 export const fetchProductsAsync = createAsyncThunk('allProducts', async () => {
   try {
     let { data } = await axios.get('http://localhost:8080/api/products'); 
-    // console.log('this is data --->', data); //* <--- this is where the data is being returned
+    console.log('this is data --->', data); //* <--- this is where the data is being returned
     return data;
   } catch (err) {             // <--- this is where the error is being caught    changed error to err and added notes-sal 
     console.log('this is err --->', err); 
@@ -15,13 +15,12 @@ export const fetchProductsAsync = createAsyncThunk('allProducts', async () => {
   }
 });
 
-export const addProductAsync = createAsyncThunk('addProduct', async ({name, description, price, imageUrl, categories})  => {
+export const addProductAsync = createAsyncThunk('addProduct', async ({name, description, price, categories})  => {
   try{
     const {data} = await axios.post('http://localhost:8080/api/products', {
       name,
       description,
       price, 
-      imageUrl,
       categories
     });
     return data;

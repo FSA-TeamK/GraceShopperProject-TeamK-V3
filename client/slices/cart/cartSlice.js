@@ -81,7 +81,7 @@ export const removeItemAsync = createAsyncThunk(
   }
 )
 
-// const local = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+// const local = localStorage.getItem('local') ? JSON.parse(localStorage.getItem('local')) : [];
 
 const cartSlice = createSlice({
   name: 'cart',

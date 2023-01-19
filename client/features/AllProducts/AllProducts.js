@@ -27,6 +27,10 @@ const AllProducts = () => {
 
     
     const [filterProducts, setFilterProducts] = useState(products)
+    console.log("products----->", products)
+    console.log("filterProducts", filterProducts)
+
+
     useEffect(() => {
         let tempProducts = [...products]
 // checking which category is checked and returning accordingly
@@ -116,21 +120,20 @@ const AddProduct = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
+    // const [imageUrl, setImageUrl] = useState("");
     const [categories, setCategories] = useState("")
 
     const user = useSelector((state) => state.auth.me);
 
-    const products = useSelector(selectAllProducts);
+    // const products = useSelector(selectAllProducts);
 
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         if (user && user.isAdmin) {
-            let newProduct = {name, description, price, imageUrl, categories}
+            let newProduct = {name, description, price, categories}
             console.log("newProduct ----->", newProduct);
             dispatch (addProductAsync(newProduct)).then(() => {
                 navigate("/products");
@@ -161,16 +164,18 @@ const AddProduct = () => {
                         onChange={(e) => setPrice(e.target.value)}
                     />
                     <select value = {categories} onChange={(e) => setCategories(e.target.value)}>
+                        <option>Choose categories...</option>
                         <option value="ATHLETIC">Athletic</option>
                         <option value="CASUAL">Casual</option>
                     </select>
                 
-                    <input
+                    {/* <input
                         type="text"
                         placeholder="Image URL"
                         value={imageUrl}
                         onChange={(e) => setImageUrl(e.target.value)}
-                    />
+                    /> */}
+
                     <button type="submit">Add Product</button>
                 </form>
             ) : (

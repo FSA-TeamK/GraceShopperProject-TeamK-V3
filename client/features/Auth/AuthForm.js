@@ -104,7 +104,7 @@ const AuthForm = ({ name, displayName }) => {
           </tbody>
         </table>
       ) : null}
-      ;
+      
     </div>
   )
 };
