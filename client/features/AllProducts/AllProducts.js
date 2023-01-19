@@ -1,7 +1,6 @@
 import React, { useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import { selectAllProducts } from "../../slices/products/productSlice";
 import { deleteProductAsync, addProductAsync, selectAllProducts } from "../../slices/products/productSlice";
 // import {navigate} from "react-router-dom";
 
@@ -86,7 +85,7 @@ const AddProduct = () => {
                         <option value="ATHLETIC">Athletic</option>
                         <option value="CASUAL">Casual</option>
                     </select>
-                
+                    
                     <input
                         type="text"
                         placeholder="Image URL"

@@ -1,4 +1,6 @@
 const router = require('express').Router()
+const { appBarClasses } = require('@mui/material')
+const app = require('../app')
 const { models: { User, Product, Cart, CartItems }} = require('../db')
 
 router.get('/', async (req, res, next) => {
@@ -16,15 +18,29 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+
   
 router.get('/:id', async (req, res, next) => {
   try{
-    const userId = await User.findbyPk(req.params.id);
+    const userId = await User.findByPk(req.params.id);
     res.json(userId);
   } catch (err){
     next(err);
   }
 });
+///////////////////////////////////////////////////
+router.patch('/:id', async (req, res, next) => {
+  try{
+    const user = await User.findByPk(req.params.id);
+    const updatedUser = await user.update(req.body);   //edit form values when user clicks submit-sal 
+    res.json(updatedUser);
+  } catch (err){
+    next(err);
+  }
+});
+///////////////////////////////////////////////////
+
 
 router.post("/", async (req, res, next) => {
   try{
